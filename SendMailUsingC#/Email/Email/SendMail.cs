@@ -52,7 +52,16 @@ namespace ConsoleApplication2
                 Credentials = new NetworkCredential("c7b5496977dcf4", "812aa415ce43e7"),
                 EnableSsl = true
             };
-            client.Send("mfsi.sujeetr@gmail.com", "mfsi.aniket@gmail.com", "Hello world", "testbody");
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress("mfsi.sujeetr@gmail.com");
+            mailMessage.To.Add("mfsi.aniket@gmail.com");
+            mailMessage.Subject = "Subject";
+            mailMessage.Body = "<h1 style=color:red; >This is test email from the greate sujeet with +ifinite score<h1>";
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Attachments.Add(new Attachment("e:\\photo.JPEG"));
+
+
+            client.Send(mailMessage);
             Console.WriteLine("Sent");
             Console.ReadLine();
         }
