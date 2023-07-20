@@ -1,0 +1,6 @@
+Deleted: D:\FileWatcher\dsad.txt
+Deleted: D:\FileWatcher\dsf.txt
+Created: D:\FileWatcher\New Text Document.txt date : Wednesday, 19 July 2023 03: 57 PM
+Renamed:
+    Old: D:\FileWatcher\New Text Document.txt
+    New: D:\FileWatcher\fg.txt

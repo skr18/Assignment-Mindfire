@@ -1,0 +1,8 @@
+E:\Assignments\SendMailUsingC#\Email\Email\bin\Debug\Email.exe.config
+E:\Assignments\SendMailUsingC#\Email\Email\bin\Debug\Email.exe
+E:\Assignments\SendMailUsingC#\Email\Email\bin\Debug\Email.pdb
+E:\Assignments\SendMailUsingC#\Email\Email\obj\Debug\Email.csproj.AssemblyReference.cache
+E:\Assignments\SendMailUsingC#\Email\Email\obj\Debug\Email.csproj.SuggestedBindingRedirects.cache
+E:\Assignments\SendMailUsingC#\Email\Email\obj\Debug\Email.csproj.CoreCompileInputs.cache
+E:\Assignments\SendMailUsingC#\Email\Email\obj\Debug\Email.exe
+E:\Assignments\SendMailUsingC#\Email\Email\obj\Debug\Email.pdb
