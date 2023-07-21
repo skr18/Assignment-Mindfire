@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{D819AEF8-4E58-4C0C-98A6-9F197A9DB22C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNet", "ConsoleApp1\AdoNet.csproj", "{D819AEF8-4E58-4C0C-98A6-9F197A9DB22C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqQueery", "LinqQueery\LinqQueery.csproj", "{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D819AEF8-4E58-4C0C-98A6-9F197A9DB22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D819AEF8-4E58-4C0C-98A6-9F197A9DB22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D819AEF8-4E58-4C0C-98A6-9F197A9DB22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

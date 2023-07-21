@@ -1,0 +1,5 @@
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\AdoNet.csproj.AssemblyReference.cache
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\AdoNet.csproj.SuggestedBindingRedirects.cache
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\AdoNet.csproj.CoreCompileInputs.cache
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

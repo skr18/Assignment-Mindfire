@@ -1,0 +1,13 @@
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\LinqQueery.exe.config
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\LinqQueery.exe
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\LinqQueery.pdb
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\EntityFramework.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\EntityFramework.SqlServer.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\EntityFramework.xml
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\EntityFramework.SqlServer.xml
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.AssemblyReference.cache
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.SuggestedBindingRedirects.cache
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.CoreCompileInputs.cache
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.CopyComplete
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.exe
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.pdb

@@ -13,3 +13,5 @@ E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.Core
 E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
 E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\bin\Debug\EntityFramework.dll
+E:\Assignments\Ado.Net\ConsoleApp1\ConsoleApp1\bin\Debug\EntityFramework.xml
