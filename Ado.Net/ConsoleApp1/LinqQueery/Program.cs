@@ -14,11 +14,19 @@ namespace LinqQueery
             using(var dbContext = new AdventureWorks2022Entities())
             {
                 //var users = dbContext.UserDetails.Where(i => i.Age > 0).ToList();
-                var users = dbContext.Address.Where(i => i.City == "Bothell").ToList();
-                foreach (var user in users)
+                try
                 {
-                    Console.WriteLine(user.AddressLine1);
+                    var str = dbContext.Address.Where(i=>i.AddressID==1).ToList();
+                    foreach (var user in str)
+                    {
+                        Console.WriteLine(user.StateProvinceID);
+                    }
                 }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("some error - "+ex);
+                }
+
             }
 
             Console.ReadLine();

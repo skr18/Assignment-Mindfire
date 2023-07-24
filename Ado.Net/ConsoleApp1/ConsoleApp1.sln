@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoNet", "ConsoleApp1\AdoNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqQueery", "LinqQueery\LinqQueery.csproj", "{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq-Query(AdeventureWorks)", "..\..\Linq-Query(AdeventureWorks)\Linq-Query(AdeventureWorks).csproj", "{9010103A-872E-4DFA-84E6-C1A80E0D876B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE249D42-AC35-42C0-A73B-CBECC33DDFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9010103A-872E-4DFA-84E6-C1A80E0D876B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9010103A-872E-4DFA-84E6-C1A80E0D876B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9010103A-872E-4DFA-84E6-C1A80E0D876B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9010103A-872E-4DFA-84E6-C1A80E0D876B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

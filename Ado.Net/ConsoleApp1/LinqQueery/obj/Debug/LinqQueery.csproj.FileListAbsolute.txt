@@ -11,3 +11,16 @@ E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.CoreCo
 E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.csproj.CopyComplete
 E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.exe
 E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\obj\Debug\LinqQueery.pdb
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\x86\SqlServerSpatial160.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\x64\SqlServerSpatial160.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\Assignments\Ado.Net\ConsoleApp1\LinqQueery\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll

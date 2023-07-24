@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestDBModel1StoreContainer" CdmEntityContainer="TestDBEntities1">
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="TestDBModel1.UserDetails">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SelectAllCustomers" FunctionName="TestDBModel1.Store.SelectAllCustomers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDBModel1.SelectAllCustomers_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="showDetails">
+      <EntityTypeMapping TypeName="TestDBModel1.showDetails">
+        <MappingFragment StoreEntitySet="showDetails">
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
