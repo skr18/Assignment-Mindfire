@@ -32,13 +32,23 @@ namespace LinqQueery
                 //var users = dbContext.UserDetails.Where(i => i.Age > 0).ToList();
                 try
                 {
+                    var str = dbContext.Employee.Distinct().OrderBy(r=> r.JobTitle).Select(r=> r.JobTitle);
 
-                    var str = from s in dbContext.SalesOrderHeader orderby s.SubTotal
+                    var str2 = dbContext.SalesOrderHeader.GroupBy(r => r.CustomerID).
+                         Select(obj => new { r = obj.Key, total = obj.Sum(r => r.Freight) }).OrderBy(k => k.r);
+
+
+
+                    var str3 = from s in dbContext.SalesOrderHeader group s by s.Customer into g orderby g.Key select new { cid = g.Key, tot = g.Sum(r => r.Freight);
+
+
+                    var str4 = dbContext.ProductInventory.GroupBy(r=>r.ProductID).Select(obj =>new { r = obj.Key , tot =  obj.Where(i=> i.Shelf=="A"|| i.Shelf=="C" || i.Shelf=="H").Sum(r=> r.Quantity)}).Where(i=> i.tot>=500).OrderBy(s => s.r);
+                   /* var str = from s in dbContext.SalesOrderHeader orderby s.SubTotal
                               select new { s.SalesOrderID, s.CustomerID, s.OrderDate, s.SubTotal, tax = (s.SubTotal * 100) / 1000 };
                     foreach (var user in str)
                     {
                         Console.WriteLine("{0} , {1} , {2} , {3} , {4}", user.SalesOrderID, user.CustomerID, user.OrderDate,user.SubTotal,user.tax);
-                    }
+                    }*/
                     
                     /*var groupedResult = from s in dbContext.Employee
                                         group s by s.JobTitle;
