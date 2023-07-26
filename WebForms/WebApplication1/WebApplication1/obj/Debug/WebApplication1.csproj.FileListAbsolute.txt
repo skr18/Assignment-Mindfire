@@ -71,3 +71,7 @@ E:\Assignments\WebForms\WebApplication1\WebApplication1\obj\Debug\WebApplication
 E:\Assignments\WebForms\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 E:\Assignments\WebForms\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 E:\Assignments\WebForms\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+E:\Assignments\WebForms\WebApplication1\WebApplication1\bin\EntityFramework.dll
+E:\Assignments\WebForms\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.dll
+E:\Assignments\WebForms\WebApplication1\WebApplication1\bin\EntityFramework.xml
+E:\Assignments\WebForms\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.xml
