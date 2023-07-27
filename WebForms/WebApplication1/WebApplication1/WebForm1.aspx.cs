@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace WebApplication1
 {
@@ -18,34 +19,152 @@ namespace WebApplication1
             Response.Cookies.Add(newcokie);
             var co_val = Response.Cookies["User"].Value;
             Label3.Text = "Data From Cookie: User - " +co_val;
-
-          
+            if (!IsPostBack)
+            {
+                showdata();
+                BindGrid();
+            }
         }
-        protected void Button1_Click2(object sender, EventArgs e)
-        {
-            /* var name = textbox2.Text;
-                 Label5.Text = "Your Choice is: " +name+" is updated";
-                 textbox2.Text = "";
-             DropDownList1.Items.Add(name);*/
 
+        protected void Edit1(object sender, DataListCommandEventArgs e )
+        {
+            DataList2.EditItemIndex = e.Item.ItemIndex;
+            showdata();
+        }
+        protected void Cancel1(object sender, DataListCommandEventArgs e)
+        {
+            DataList2.EditItemIndex = -1;
+            showdata();
+        }
+        protected void update1(object sender, DataListCommandEventArgs e)
+        {
+            DataListItem row = DataList2.Items[e.Item.ItemIndex];
+            int Id = Convert.ToInt32(DataList2.DataKeys[e.Item.ItemIndex]);
+            //Response.Write(Id);
+            string name = (row.FindControl("FirstNameText") as TextBox).Text;
+            int age = int.Parse((row.FindControl("AgeText") as TextBox).Text);
+            using (var dbcontext = new TestDBEntities1())
+            {
+                UserDetails user = dbcontext.UserDetails.Where(i => i.UserId == Id).FirstOrDefault();
+                user.Age = age;
+                user.FirstName = name;
+                dbcontext.SaveChanges();
+            }
+
+            DataList2.EditItemIndex = -1;
+            showdata() ;
+        }
+        private void BindGrid()
+        {
+            using (var dbcontext = new TestDBEntities1())
+            {
+                gridview.DataSource = dbcontext.UserDetails.ToList();
+                gridview.DataBind();
+                showdata();
+            }
+        }
+
+        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gridview.EditIndex = e.NewEditIndex;
+            BindGrid();
+        }
+        protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow row = gridview.Rows[e.RowIndex];
+            int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
+            //Response.Write(Id);
+            string name = (row.FindControl("EditName") as TextBox).Text;
+            int age =int.Parse( (row.FindControl("EditAge") as TextBox).Text );
+            using (var dbcontext = new TestDBEntities1())
+            {
+                UserDetails user = dbcontext.UserDetails.Where(i => i.UserId==Id).FirstOrDefault();
+                user.Age = age;
+                user.FirstName = name;
+                dbcontext.SaveChanges();
+            }
+            
+            gridview.EditIndex = -1;
+            BindGrid();
+        }
+
+        protected void OnRowCancelingEdit(object sender, EventArgs e)
+        {
+            gridview.EditIndex = -1;
+            this.BindGrid();
+        }
+
+        protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
+            using (var dbcontext = new TestDBEntities1())
+            {
+                UserDetails user = dbcontext.UserDetails.Where(i => i.UserId == Id).FirstOrDefault();
+                dbcontext.UserDetails.Remove(user);
+                dbcontext.SaveChanges();
+            }
+            this.BindGrid();
+        }
+        protected void Insert(object sender, EventArgs e)
+        {
+            var name = txtName.Text;
+            int age = int.Parse(txtAge.Text);
+
+            using (var dbcontext = new TestDBEntities1())
+            {
+                UserDetails newobj = new UserDetails();
+                newobj.FirstName = name;
+                newobj.Age = age;
+                dbcontext.UserDetails.Add(newobj);
+                dbcontext.SaveChanges();
+            }
+            txtName.Text = "";
+            txtAge.Text = "";
+            BindGrid();
+        }
+
+        private void showdata()
+        {
             DataTable dt = new DataTable();
             dt.Columns.Add("UserId23");
             dt.Columns.Add("FirstName1");
             dt.Columns.Add("Age1");
-
-
             using (var dbcontext = new TestDBEntities1())
             {
-                int name = int.Parse( textbox2.Text);
-                var user = dbcontext.UserDetails.Where(i => i.Age == name);
+                var user = dbcontext.UserDetails.Select(i => i);
                 foreach (var data in user)
                 {
                     dt.Rows.Add(data.UserId, data.FirstName, data.Age);
                 }
             }
-
             DataList2.DataSource = dt;
             DataList2.DataBind();
+        }
+
+        protected void Button1_Click3(object sender, EventArgs e)
+        {
+            var name = textbox3.Text;
+            int age = int.Parse(textbox4.Text);
+
+            using (var dbcontext = new TestDBEntities1())
+            {
+                UserDetails newobj = new UserDetails();
+                newobj.FirstName = name;
+                newobj.Age = age;
+                dbcontext.UserDetails.Add(newobj);
+                dbcontext.SaveChanges();
+            }
+            textbox3.Text = "";
+            textbox4.Text = "";
+            showdata();
+            BindGrid();
+        }
+        protected void Button1_Click2(object sender, EventArgs e)
+        {
+             var name = textbox2.Text;
+                 Label5.Text = "Your Choice is: " +name+" is updated";
+                 textbox2.Text = "";
+             DropDownList1.Items.Add(name);
         }
         protected void Button1_Click(object sender, EventArgs e)
         {

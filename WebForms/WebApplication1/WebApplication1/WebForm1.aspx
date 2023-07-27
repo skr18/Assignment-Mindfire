@@ -59,8 +59,7 @@
                     <br />  
                     <asp:Button ID="Button3" runat="server" OnClick="Button1_Click" Text="Submit" />  
                     <br />  
-                    <br />  
-                    <asp:Label ID="Label4" runat="server" EnableViewState="False"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" EnableViewState="False"></asp:Label><br /><br />
 
                     <label style="width:10%" >Add New City</label>
                     <asp:TextBox ID="textbox2" runat="server" ToolTip="Enter City Name" placeholder="Enter city name" /> <br /><br />
@@ -68,38 +67,92 @@
                      <asp:Label ID="Label5" runat="server" EnableViewState="False"></asp:Label> <br /><br />
    
 
-            <asp:DataList ID="DataList1" runat="server" DataKeyField="UserId" DataSourceID="SqlDataSource2">  
+            <b>Data List Using EF</b><br />
+             <label style="width:10%" >Add New Data</label><br /><br />
+                    <asp:TextBox ID="textbox3" runat="server" ToolTip="Enter City Name" placeholder="Enter Name" /> <br /><br />
+                    <asp:TextBox ID="textbox4" runat="server" ToolTip="Enter City Name" placeholder="Enter Age" /> <br /><br />
+                     <asp:Button ID="Button4" runat="server" OnClick="Button1_Click3" Text="Add Data" />  <br />
+                     <asp:Label ID="Label6" runat="server" EnableViewState="False"></asp:Label> <br /><br />
+
+            <asp:DataList ID="DataList2" runat="server" DataKeyField="UserId23" OnEditCommand="Edit1" OnCancelCommand="Cancel1" OnUpdateCommand="update1">  
             <ItemTemplate>   
                 UserId:
-                <asp:Label ID="UserIdLabel" runat="server" Text='<%# Eval("UserId") %>' />
-                <br />  
+                <asp:Label ID="UserIdLabel" runat="server" Text='<%# Eval("UserId23") %>' /><br />
                 FirstName:
-                <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
-                <br />  
+                <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName1") %>' />  <br />
                 Age:
-                <asp:Label ID="AgeLabel" runat="server" Text='<%# Eval("Age") %>' />
-                <br />  
-                <br />
-            </ItemTemplate>  
-        </asp:DataList>  
+                <asp:Label ID="AgeLabel" runat="server" Text='<%# Eval("Age1") %>' /><br />
+                <asp:LinkButton ID="Edt" CommandName="Edit"  runat="server" Text="Edit"></asp:LinkButton><br /><br />
+            </ItemTemplate>
+                <EditItemTemplate>
+                      UserId:
+                    <asp:TextBox ID="UserIdLabel" runat="server" Text='<%# Eval("UserId23") %>' /><br />
+                    FirstName:
+                    <asp:TextBox ID="FirstNameText" runat="server" Text='<%# Eval("FirstName1") %>' />  <br />
+                    Age:
+                    <asp:TextBox ID="AgeText" runat="server" Text='<%# Eval("Age1") %>' /><br />
 
-            <asp:DataList ID="DataList2" runat="server" DataKeyField="UserId23">  
-            <ItemTemplate>   
-                UserId:
-                <asp:Label ID="UserIdLabel" runat="server" Text='<%# Eval("UserId23") %>' />
-                <br />  
-                FirstName:
-                <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName1") %>' />
-                <br />  
-                Age:
-                <asp:Label ID="AgeLabel" runat="server" Text='<%# Eval("Age1") %>' />
-                <br />  
-                <br />
-            </ItemTemplate>  
-        </asp:DataList>  
+                    <asp:LinkButton ID="update" runat="server" CommandName="update" Text="Update"></asp:LinkButton><br />
+                    <asp:LinkButton ID="cancel" runat="server" CommandName="cancel" Text="Cancel"></asp:LinkButton><br />
+                    
+        
+                </EditItemTemplate>
+                
+        </asp:DataList>  <br /><br />
 
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TestDBConnectionString2 %>" ProviderName="<%$ ConnectionStrings:TestDBConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [showDetails]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TestDBConnectionString2 %>"
+                ProviderName="<%$ ConnectionStrings:TestDBConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM [showDetails]">
+            </asp:SqlDataSource>
            
+
+            <b>Grid View Using EF</b><br />
+            <asp:GridView runat="server" AutoGenerateColumns="false" ID="gridview" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit" 
+                 OnRowDeleting="OnRowDeleting" OnRowUpdating="OnRowUpdating" EmptyDataText="No Records To Show" DataKeyNames="UserId">
+                <Columns>
+                    <asp:TemplateField HeaderText="UserId" ItemStyle-Width="150">
+                        <ItemTemplate>    
+                            <asp:Label runat="server" ID="Id" Text='<%# Eval("UserId") %>'> </asp:Label>                        
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditId" Text='<%# Eval("UserId") %>'  ></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                      <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="Name" Text='<%# Eval("FirstName") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditName" Text='<%# Eval("FirstName") %>' ></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+
+                      <asp:TemplateField HeaderText="Age" ItemStyle-Width="150">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="Age" Text='<%# Eval("Age") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditAge" Text='<%# Eval("Age") %>'  ></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
+                </Columns>
+            </asp:GridView>
+             <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse">
+                    <tr>
+                        <td style="width: 150px">
+                            Name:<br />
+                            <asp:TextBox ID="txtName" runat="server" Width="140" />
+                        </td>
+                        <td style="width: 150px">
+                            Age:<br />
+                            <asp:TextBox ID="txtAge" runat="server" Width="140" />
+                        </td>
+                        <td style="width: 100px">
+                            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Insert" />
+                        </td>
+                   </tr>
+              </table>
         </div>
     </div>
 </main>
