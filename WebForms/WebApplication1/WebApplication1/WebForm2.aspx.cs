@@ -11,17 +11,26 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            check();   
+            if (!IsPostBack)
+            {
+                if (Session["user2"] != null)
+                {
+                    data.Text = Session["user2"].ToString();
+                }
+                else
+                {
+                    data.Text = "No session Data";
+                }
+            }
+            else
+            {
+                data.Text = "No Data";
+            }
         }
-        protected void check()
+        protected void check(object sender, EventArgs e)
         {
            
-            Session["user"] = "Sujeet";
-            if (Session["user"] != null)
-            {
-                data.Text = Session["user"].ToString();
-               
-            }
+            Session["user2"] = "Sujeet2";
         }
 
     }

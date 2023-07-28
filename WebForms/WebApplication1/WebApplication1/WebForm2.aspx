@@ -59,7 +59,7 @@
             <tr>
                 <td class="auto-style4"></td>
                 <td>
-                    <asp:Button ID="Button2" runat="server" Text="2save" CausesValidation="false" />
+                    <asp:Button ID="Button2" runat="server" Text="2save" OnClick="check" CausesValidation="false" />
                 </td>
             </tr>
 

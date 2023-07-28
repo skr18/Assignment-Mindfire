@@ -23,6 +23,15 @@ namespace WebApplication1
             {
                 showdata();
                 BindGrid();
+                if (Session["Datalist"] != null)
+                {
+                    string name = Session["Datalist"].ToString();
+                    DropDownList1.Items.Add(name);
+                }
+                else
+                {
+                    Response.Write("No previous data");
+                }
             }
         }
 
@@ -161,10 +170,12 @@ namespace WebApplication1
         }
         protected void Button1_Click2(object sender, EventArgs e)
         {
-             var name = textbox2.Text;
+                 var name = textbox2.Text;
                  Label5.Text = "Your Choice is: " +name+" is updated";
                  textbox2.Text = "";
-             DropDownList1.Items.Add(name);
+                 DropDownList1.Items.Add(name);
+                Session["Datalist"] = name;
+
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
