@@ -109,32 +109,7 @@
             <asp:GridView runat="server" AutoGenerateColumns="false" ID="gridview" OnRowEditing="OnRowEditing" OnRowCancelingEdit="OnRowCancelingEdit" 
                  OnRowDeleting="OnRowDeleting" OnRowUpdating="OnRowUpdating" EmptyDataText="No Records To Show" DataKeyNames="UserId">
                 <Columns>
-                    <asp:TemplateField HeaderText="UserId" ItemStyle-Width="150">
-                        <ItemTemplate>    
-                            <asp:Label runat="server" ID="Id" Text='<%# Eval("UserId") %>'> </asp:Label>                        
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditId" Text='<%# Eval("UserId") %>'  ></asp:TextBox>
-                        </EditItemTemplate>
-                    </asp:TemplateField>
-
-                      <asp:TemplateField HeaderText="Name" ItemStyle-Width="150">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="Name" Text='<%# Eval("FirstName") %>'></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditName" Text='<%# Eval("FirstName") %>' ></asp:TextBox>
-                        </EditItemTemplate>
-                    </asp:TemplateField>
-
-                      <asp:TemplateField HeaderText="Age" ItemStyle-Width="150">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="Age" Text='<%# Eval("Age") %>'></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditAge" Text='<%# Eval("Age") %>'  ></asp:TextBox>
-                        </EditItemTemplate>
-                    </asp:TemplateField>
+                   
                     <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="150"/>
                 </Columns>
             </asp:GridView>

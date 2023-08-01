@@ -47,7 +47,7 @@ namespace WebApplication1
         }
         protected void update1(object sender, DataListCommandEventArgs e)
         {
-            DataListItem row = DataList2.Items[e.Item.ItemIndex];
+           /* DataListItem row = DataList2.Items[e.Item.ItemIndex];
             int Id = Convert.ToInt32(DataList2.DataKeys[e.Item.ItemIndex]);
             //Response.Write(Id);
             string name = (row.FindControl("FirstNameText") as TextBox).Text;
@@ -61,16 +61,16 @@ namespace WebApplication1
             }
 
             DataList2.EditItemIndex = -1;
-            showdata() ;
+            showdata() ;*/
         }
         private void BindGrid()
         {
-            using (var dbcontext = new TestDBEntities1())
+          /*  using (var dbcontext = new TestDBEntities1())
             {
                 gridview.DataSource = dbcontext.UserDetails.ToList();
                 gridview.DataBind();
                 showdata();
-            }
+            }*/
         }
 
         protected void OnRowEditing(object sender, GridViewEditEventArgs e)
@@ -80,7 +80,7 @@ namespace WebApplication1
         }
         protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = gridview.Rows[e.RowIndex];
+          /*  GridViewRow row = gridview.Rows[e.RowIndex];
             int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
             //Response.Write(Id);
             string name = (row.FindControl("EditName") as TextBox).Text;
@@ -94,7 +94,7 @@ namespace WebApplication1
             }
             
             gridview.EditIndex = -1;
-            BindGrid();
+            BindGrid();*/
         }
 
         protected void OnRowCancelingEdit(object sender, EventArgs e)
@@ -105,18 +105,18 @@ namespace WebApplication1
 
         protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
+           /* int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
             using (var dbcontext = new TestDBEntities1())
             {
                 UserDetails user = dbcontext.UserDetails.Where(i => i.UserId == Id).FirstOrDefault();
                 dbcontext.UserDetails.Remove(user);
                 dbcontext.SaveChanges();
             }
-            this.BindGrid();
+            this.BindGrid();*/
         }
         protected void Insert(object sender, EventArgs e)
         {
-            var name = txtName.Text;
+          /*  var name = txtName.Text;
             int age = int.Parse(txtAge.Text);
 
             using (var dbcontext = new TestDBEntities1())
@@ -129,12 +129,12 @@ namespace WebApplication1
             }
             txtName.Text = "";
             txtAge.Text = "";
-            BindGrid();
+            BindGrid();*/
         }
 
         private void showdata()
         {
-            DataTable dt = new DataTable();
+           /* DataTable dt = new DataTable();
             dt.Columns.Add("UserId23");
             dt.Columns.Add("FirstName1");
             dt.Columns.Add("Age1");
@@ -147,12 +147,12 @@ namespace WebApplication1
                 }
             }
             DataList2.DataSource = dt;
-            DataList2.DataBind();
+            DataList2.DataBind();*/
         }
 
         protected void Button1_Click3(object sender, EventArgs e)
         {
-            var name = textbox3.Text;
+          /*  var name = textbox3.Text;
             int age = int.Parse(textbox4.Text);
 
             using (var dbcontext = new TestDBEntities1())
@@ -166,7 +166,7 @@ namespace WebApplication1
             textbox3.Text = "";
             textbox4.Text = "";
             showdata();
-            BindGrid();
+            BindGrid();*/
         }
         protected void Button1_Click2(object sender, EventArgs e)
         {

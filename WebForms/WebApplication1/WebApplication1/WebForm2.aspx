@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="~/WebForm2.aspx.cs" Inherits="WebApplication1.WebForm2" %>
 
+
 <!DOCTYPE html>
+<%@ Register Src="~/WebUserControl1.ascx" TagPrefix="sujeet" TagName="code"  %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -68,10 +71,6 @@
             ControlToValidate="firstval" Display="None" ErrorMessage="Enter valid value" ForeColor="Red"
             Operator="LessThan" Type="Integer"></asp:CompareValidator> 
 
-        <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="secondval2"
-            ControlToValidate="secondval" Display="None" ErrorMessage="Enter valid value" ForeColor="Red"
-            Operator="LessThan" Type="Integer"></asp:CompareValidator>
-
         <asp:RangeValidator  ID="CompareValidator3" runat="server" MaximumValue="20" MinimumValue="10"
             ControlToValidate="secondval2" Display="None" ErrorMessage="Enter valid range" ForeColor="Red"
             Operator="LessThan" Type="Integer"></asp:RangeValidator>
@@ -82,6 +81,8 @@
         </asp:RegularExpressionValidator>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
         <asp:Label ID="data" runat="server"></asp:Label>
+        <!-- <sujeet:code id="usercontrol" runat="server" /> -->
+        
     </form>
 </body>
 </html>
