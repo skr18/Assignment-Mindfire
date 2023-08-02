@@ -19,6 +19,7 @@ namespace RegistrationPageAsp
         {
             this.IdsOfRolesAndUsers = new HashSet<IdsOfRolesAndUsers>();
             this.IdsOfRolesAndUsers1 = new HashSet<IdsOfRolesAndUsers>();
+            this.UserNotes = new HashSet<UserNotes>();
         }
     
         public int UserId { get; set; }
@@ -54,5 +55,7 @@ namespace RegistrationPageAsp
         public virtual States States1 { get; set; }
         public virtual States States2 { get; set; }
         public virtual States States3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserNotes> UserNotes { get; set; }
     }
 }

@@ -9,6 +9,17 @@
     border-radius: 18px;
     margin: auto;
 }
+#UserNotes {
+    display: none;
+    width: 40%;
+    margin: auto;
+    background:red;
+}
+.UserNotesVisible {
+    display: block;
+    width: 40%;
+    margin: auto;
+}
 
 .heading {
     display: flex;

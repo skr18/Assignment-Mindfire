@@ -31,5 +31,6 @@ namespace RegistrationPageAsp
         public virtual DbSet<States> States { get; set; }
         public virtual DbSet<UserDetails> UserDetails { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserNotes> UserNotes { get; set; }
     }
 }

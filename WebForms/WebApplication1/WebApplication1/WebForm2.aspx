@@ -81,7 +81,7 @@
         </asp:RegularExpressionValidator>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
         <asp:Label ID="data" runat="server"></asp:Label>
-        <!-- <sujeet:code id="usercontrol" runat="server" /> -->
+            <sujeet:code id="usercontrol" runat="server" /> -->
         
     </form>
 </body>

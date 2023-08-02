@@ -80,6 +80,7 @@
     <NavigationProperty Name="States1" Relationship="Self.FK__UserDetai__Perma__619B8048" FromRole="UserDetails" ToRole="States" />
     <NavigationProperty Name="States2" Relationship="Self.FK__UserDetai__Prese__5CD6CB2B" FromRole="UserDetails" ToRole="States" />
     <NavigationProperty Name="States3" Relationship="Self.FK__UserDetai__Prese__60A75C0F" FromRole="UserDetails" ToRole="States" />
+    <NavigationProperty Name="UserNotes" Relationship="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" FromRole="UserDetails" ToRole="UserNotes" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -305,5 +306,31 @@
       <End Role="States" EntitySet="States" />
       <End Role="UserDetails" EntitySet="UserDetails" />
     </AssociationSet>
+    <EntitySet Name="UserNotes" EntityType="RegistrationPageModel.UserNotes" />
+    <AssociationSet Name="FK__UserNotes__UserI__6477ECF3" Association="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="UserNotes" EntitySet="UserNotes" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="UserNotes">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserDetails" Relationship="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" FromRole="UserNotes" ToRole="UserDetails" />
+  </EntityType>
+  <Association Name="FK__UserNotes__UserI__6477ECF3">
+    <End Type="RegistrationPageModel.UserDetails" Role="UserDetails" Multiplicity="1" />
+    <End Type="RegistrationPageModel.UserNotes" Role="UserNotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserNotes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

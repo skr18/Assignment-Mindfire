@@ -98,7 +98,7 @@
             //document.getElementById("submitButton").innerHTML = "Update";
             $("#submitButton").attr('value', 'Update');
             $("#BackButton").attr('value', 'Cancel');
-            
+            $("#UserNotes").css('display', 'block');
         }
     }
 

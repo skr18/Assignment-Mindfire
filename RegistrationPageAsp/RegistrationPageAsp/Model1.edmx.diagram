@@ -24,6 +24,8 @@
         <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Perma__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__5CD6CB2B" ManuallyRouted="false" />
         <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__60A75C0F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RegistrationPageModel.UserNotes" Width="1.5" PointX="7.5" PointY="6.75" />
+        <AssociationConnector Association="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

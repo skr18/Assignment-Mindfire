@@ -11,52 +11,43 @@ namespace RegistrationPageAsp
 {
 
 
-    public partial class WebForm1
+    public partial class WebUserControl1
     {
 
         /// <summary>
-        /// firstnameinp control.
+        /// gridview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText firstnameinp;
+        protected global::System.Web.UI.WebControls.GridView gridview;
 
         /// <summary>
-        /// RolesCheckBox control.
+        /// txtNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList RolesCheckBox;
+        protected global::System.Web.UI.WebControls.TextBox txtNote;
 
         /// <summary>
-        /// submitButton control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button submitButton;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
-        /// BackButton control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BackButton;
-
-        /// <summary>
-        /// usercontrol control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::RegistrationPageAsp.WebUserControl1 usercontrol;
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

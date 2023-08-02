@@ -1,8 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegistrationPage.aspx.cs" Inherits="RegistrationPageAsp.WebForm1" %>
 
 <!DOCTYPE html>
-
+<%@ Register Src="~/WebUserControl1.ascx" TagPrefix="sujeet" TagName="code"  %>
 <html xmlns="http://www.w3.org/1999/xhtml">
+    
+
 <head runat="server">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -261,7 +263,11 @@
                 <br>
             </div>
 
+        </div><br /><br />
+        <div id="UserNotes" class="UserNotes">
+            <sujeet:code  id="usercontrol" runat="server" />
         </div>
+        
     </form>
 </body>
 <script src="./Scripts/index.js"></script>

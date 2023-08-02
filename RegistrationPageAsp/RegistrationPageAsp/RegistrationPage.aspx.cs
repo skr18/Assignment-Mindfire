@@ -61,6 +61,10 @@ namespace RegistrationPageAsp
             {
                 Id = 0;
             }
+            else if(Id!=0)
+            {
+                usercontrol.objId = Id;
+            }
 
         }
 
