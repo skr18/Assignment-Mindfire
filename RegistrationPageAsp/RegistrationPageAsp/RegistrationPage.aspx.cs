@@ -8,6 +8,7 @@ using System.IO;
 using Microsoft.Ajax.Utilities;
 using System.Xml.Linq;
 using System.Data.Entity.Migrations;
+using System.Web.Services;
 
 namespace RegistrationPageAsp
 {
@@ -41,28 +42,44 @@ namespace RegistrationPageAsp
         public string userPresentPostal { get; set; }
 
         public string Roles { get; set; }
+
+        public string userSubcription { get; set; }
     }
    
     public partial class WebForm1 : System.Web.UI.Page
     {
         Var name;
+        static int Id=0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-              SetRoles();
+                SetUserRoles();
 
             }
+            if (Request.QueryString["UserId"]==null)
+            {
+                Id = 0;
+            }
+
         }
 
         [System.Web.Services.WebMethod]
-        public static Object sendData(string name )
+        public static Object sendUserData(string UserId)
         {
                 Temp obj = new Temp();
                 
-               int id = int.Parse(name);
+                int id = int.Parse(UserId);
+                Id = id;
                 using (var dbcontext = new RegistrationPageEntities1())
                 {
+                string roles = "";
+                var allRolesId = dbcontext.IdsOfRolesAndUsers.Where(i=> i.UserId == id).Select(r=> r.RoleId);
+                foreach(var roleid in allRolesId)
+                {
+                    var rolename =dbcontext.Roles.Where(i=> i.RoleId == roleid).Select(r=> r.RoleName).FirstOrDefault();
+                    roles += rolename + ",";
+                }
                 var data = dbcontext.UserDetails.Where(i=> i.UserId == id ).FirstOrDefault();
 
                 int stateId = data.PermanentStateId;
@@ -101,13 +118,15 @@ namespace RegistrationPageAsp
                 obj.userPermanentPostal = data.PermanentPostalCode;
                 obj.userPresentPostal = data.PresentPostalCode;
 
-
+                obj.Roles = roles;
+                obj.userSubcription = data.Subscribed;
+                 
                 }
            return obj;
         }
         
         [System.Web.Services.WebMethod]
-        public static  void GetData(Temp data)
+        public static  void GetUserData(Temp data)
         {
             var name = data.userFirstName;
             var email = data.userEmail;
@@ -118,22 +137,20 @@ namespace RegistrationPageAsp
 
             var Roles = data.Roles;
 
-             using (var dbcontext = new RegistrationPageEntities1())
-             {
-                  Users newuser = new Users();
-                  newuser.FirstName = name.ToString();
-           
-                  newuser.Email = email.ToString();
-
-                  dbcontext.Users.Add(newuser);
-                  dbcontext.SaveChanges();
-             }
+            
             using (var dbcontext = new RegistrationPageEntities1())
             {
                 int countryId = dbcontext.Country.Where(i=> i.CountryName == country).Select(r=>r.CountryId).FirstOrDefault();
                 int stateId = dbcontext.States.Where(i=> i.StateName == state).Select(r=>r.StateId).FirstOrDefault();
-            
-                UserDetails newuser = new UserDetails();
+                UserDetails newuser;
+                if (Id == 0)
+                {
+                    newuser = new UserDetails();
+                }
+                else
+                {
+                     newuser = dbcontext.UserDetails.Where(i=>i.UserId == Id).FirstOrDefault();
+                }
                 newuser.Email = email;
                 newuser.FirstName = name;
                 newuser.LastName = lastname;
@@ -156,19 +173,35 @@ namespace RegistrationPageAsp
                 newuser.PermanentCity = data.userPermanentCity;
                 newuser.PresentPostalCode = data.userPresentPostal;
                 newuser.PermanentPostalCode = data.userPermanentPostal;
+                newuser.Subscribed = data.userSubcription;
 
-                dbcontext.UserDetails.Add(newuser);
+                if(Id == 0)
+                {
+                    dbcontext.UserDetails.Add(newuser);
+                }
+               
                 
                 dbcontext.SaveChanges();
                 int userId = newuser.UserId;
-                foreach(var item in Roles.Split(','))
+               // IdsOfRolesAndUsers newRoleUser;
+                if (Id != 0)
+                {
+                    var newRoleUser = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == Id);
+                    foreach (var roleUser in newRoleUser)
+                    {
+                        dbcontext.IdsOfRolesAndUsers.Remove(roleUser);
+                    }
+                }
+                foreach (var item in Roles.Split(','))
                 {
                     if(item!="")
                     {
                         int roleID=dbcontext.Roles.Where(i=>i.RoleName==item).Select(i=>i.RoleId).Single();
+
                         IdsOfRolesAndUsers newRoleUser = new IdsOfRolesAndUsers();
                         newRoleUser.RoleId = roleID;
                         newRoleUser.UserId = userId;
+
                         dbcontext.IdsOfRolesAndUsers.Add(newRoleUser);
                         dbcontext.SaveChanges();
                     }
@@ -178,7 +211,7 @@ namespace RegistrationPageAsp
         }
             
 
-        protected void SetRoles()
+        protected void SetUserRoles()
         {
             using (var dbcontext = new RegistrationPageEntities1())
             {
@@ -192,7 +225,9 @@ namespace RegistrationPageAsp
             }
 
         }
-        [System.Web.Services.WebMethod]
+        [WebMethod(EnableSession = true)]
+        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true, ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        //[System.Web.Services.WebMethod]
         public static List<string> GetCountry() 
         {
             List<string> AllCountry = new List<string>();
@@ -226,27 +261,5 @@ namespace RegistrationPageAsp
             return AllState;
         }
 
-        [System.Web.Services.WebMethod]
-        public List<string> GetRoles()
-        {
-            List<string> AllRoles = new List<string>();
-
-            for(int i = 0;i< RolesCheckBox.Items.Count; i++)
-            {
-                if (RolesCheckBox.Items[i].Selected)
-                {
-                    AllRoles.Add(RolesCheckBox.Items[i].Text);
-                }
-            }
-            return AllRoles;
-        }
-
-
-         protected void submitButton_Click(object sender, EventArgs e)
-          {
-           
-
-          
-          }
     }
 }

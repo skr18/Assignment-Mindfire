@@ -2,21 +2,21 @@
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    ids = urlParams.get('UserId');
+    id = urlParams.get('UserId');
 
-    if (ids != null) {
-        getData(ids);
+    if (id != null) {
+        getData(id);
         function getData(ids) {
-            var data = { "name": ids };
+            var data = { "UserId": id };
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(data),
-                url: "WebForm1.aspx/sendData",
+                url: "RegistrationPage.aspx/sendUserData",
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 dataType: "json",
                 success: function (responce) {
-                    loadData2(responce.d)
+                    loadNewData(responce.d)
                 },
                 failure: function (response) {
                     alert("failure" + response.d);
@@ -28,43 +28,29 @@
         async function initiate() {
 
             fetchdata("country", "countries", "", "GetCountry");
-            $("#country").change(function () {
-                $(`#${$(`#state`).attr("errorId")}`)
-                    .text("State requried")
-                    .css("visibility", "visible");
-                fetchdata("state", "states", country.value, "state_name");
-            });
-            /*$("#state").change(function () {
-                $(`#${$(`#city`).attr("errorId")}`)
-                    .text("city requried")
-                    .css("visibility", "visible");
-                fetchdata("city", "cities", state.value, "city_name");
-            });*/
+
 
             fetchdata("presentCountry", "countries", "", "GetCountry");
-            $("#presentCountry").change(function () {
-                $(`#${$(`#presentState`).attr("errorId")}`)
-                    .text("State requried")
-                    .css("visibility", "visible");
-                fetchdata("presentState", "states", presentCountry.value, "state_name");
-            });
-            /* $("#presentState").change(function () {
-                 $(`#${$(`#presentCity`).attr("errorId")}`)
-                     .text("city requried")
-                     .css("visibility", "visible");
-                 fetchdata("presentCity", "cities", presentState.value, "city_name");
-             });*/
+          
         }
         await initiate();
 
     }
-  
 
+    $("#country").change(function () {
+        $(`#${$(`#state`).attr("errorId")}`)
+            .text("State requried")
+            .css("visibility", "visible");
+        fetchdata("state", "states", country.value, "state_name");
+    });
+    $("#presentCountry").change(function () {
+        $(`#${$(`#presentState`).attr("errorId")}`)
+            .text("State requried")
+            .css("visibility", "visible");
+        fetchdata("presentState", "states", presentCountry.value, "state_name");
+    });
     
-
-   
-    
-    function loadData2(datas) {
+    function loadNewData(datas) {
         if (datas.length != 0) {
             $("#firstnameinp").val(datas["userFirstName"]);
             $("#emailinp").val(datas["userEmail"]);
@@ -95,7 +81,23 @@
             $("#present-postal").val(datas["userPresentPostal"]);
             $("#presentCity").val(datas["userPresentCity"]);
 
-            
+            AllRoles = datas.Roles.split(",");
+            $("#rolesDiv input").each(function () {
+                if (AllRoles.includes($(this).val())) {
+                    this.checked = true;
+                }
+            })
+            if (datas["userSubcription"] == "True") {
+                $("#userProfile input").each(function () {
+                    if ($(this).attr("attrChk")) {
+                        this.checked = true;
+                    }
+                });
+            }
+           // $("#<%=submitButton.ClientID%>").val('InActivate');
+            //document.getElementById("submitButton").innerHTML = "Update";
+            $("#submitButton").attr('value', 'Update');
+            $("#BackButton").attr('value', 'Cancel');
             
         }
     }
@@ -142,8 +144,8 @@
 
        function getCountry() {
             $.ajax({
-                type: "POST",
-                url: "WebForm1.aspx/GetCountry",
+                type: "GET",
+                url: "RegistrationPage.aspx/GetCountry",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async:false,
@@ -152,7 +154,7 @@
                     LoadData(responce.d);
                 },
                 failure: function (response) {
-                    console("failure" + response.d);
+                    console("failure to load country" + response.d);
                 }
 
             });
@@ -162,17 +164,16 @@
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(data),
-                url: "WebForm1.aspx/GetState",
+                url: "RegistrationPage.aspx/GetState",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
                 success: function (responce) {
                     console.log("succes " + responce.d);
                     LoadData(responce.d);
-
                 },
                 failure: function (response) {
-                    console("failure" + response.d);
+                    alert("failure to load state" + response.d);
                 }
 
             });
@@ -256,14 +257,17 @@
 
     $("#hobby").click(function (e) {
         e.preventDefault();
-        $("#hobbiesDiv").toggleClass("hobbiesVisible");
+        $("#rolesDiv").toggleClass("hobbiesVisible");
     });
 
     $("#profileimg").on("change", function (e) {
         let newsrc = URL.createObjectURL(e.target.files[0]);
         $("#photo").attr("src", newsrc);
     });
-
+    $("#BackButton").click(function (e) {
+        e.preventDefault();
+        window.location.href = "UsersListPage";
+    });
     $("#submitButton").click(function (e)
     {
         e.preventDefault();
@@ -272,7 +276,6 @@
         let flag = 1;
         if (flag==1)
         {
-            $("#userHobbies").text("");
             let objectData = {}
             $("#userProfile input").each(function () {
                 if ($(this).attr("data_id")) {
@@ -286,12 +289,13 @@
                     //console.log(objectData[x])
                 }
                 if ($(this).attr("attrChk")) {
-                    $("#userSubcription").text(this.checked ? "Yes" : "No");
-                    objectData["userSubcription"] = $("#userSubcription").html()
+                    var ischecked = this.checked;
+                    console.log("ajj -- ", ischecked);
+                    objectData["userSubcription"] = ischecked;
                 }
             });
              var Roles = "";
-            $("#hobbiesDiv input").each(function () {
+            $("#rolesDiv input").each(function () {
                 if (this.checked) {
                     console.log($(this).val());
                     Roles += $(this).val() + ",";
@@ -299,7 +303,7 @@
             })
             Roles.substring(0, Roles.length - 1);
             objectData.Roles = Roles;
-            objectData["userHobbies"] = $("#userHobbies").html()
+
             $("#userProfile select").each(function () {
                 if ($(this).attr("data_id")) {
                     $(`#${$(this).attr("data_id")}`).text($(this).val());
@@ -308,15 +312,15 @@
                 }
             });
 
-            pushData();
+            SendData();
            
           
-            window.location.href = "webform2"
+            window.location.href = "UsersListPage";
 
-            function pushData() {
+            function SendData() {
                 $.ajax({
                     type: "POST",
-                    url: "WebForm1.aspx/GetData",
+                    url: "RegistrationPage.aspx/GetUserData",
                     data: JSON.stringify({ data: objectData }),
                     contentType: "application/json; charset=utf-8",
                     async: false,
@@ -325,7 +329,7 @@
                         console.log("succes " + responce.d);
                     },
                     failure: function (response) {
-                        console.log("failure" + response.d);
+                        alert.log("failed to upload data" + response.d);
                     }
 
                 })

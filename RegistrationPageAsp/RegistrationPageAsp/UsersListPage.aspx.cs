@@ -50,26 +50,12 @@ namespace RegistrationPageAsp
             gridview.DataBind();
         }
 
-        protected void OnRowEditing(object sender, GridViewEditEventArgs e)
+       protected void OnRowEditing(object sender, GridViewEditEventArgs e)
         {
             gridview.EditIndex = e.NewEditIndex;
+            int Id = Convert.ToInt32(gridview.DataKeys[e.NewEditIndex].Value);
+            Response.Redirect(string.Format("~/RegistrationPage.aspx?UserId={0}", Id));
             BindGrid();
-        }
-        protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            GridViewRow row = gridview.Rows[e.RowIndex];
-            int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
-
-            Response.Redirect(string.Format("~/WebForm1.aspx?UserId={0}", Id));
-
-            gridview.EditIndex = -1;
-            BindGrid();
-        }
-
-        protected void OnRowCancelingEdit(object sender, EventArgs e)
-        {
-            gridview.EditIndex = -1;
-            this.BindGrid();
         }
 
         protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -77,13 +63,24 @@ namespace RegistrationPageAsp
             int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
             using (var dbcontext = new RegistrationPageEntities1())
             {
-                //Users user = dbcontext.Users.Where(i => i.UserId == Id).FirstOrDefault();
+                var newRoleUser = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == Id);
+                foreach (var roleUser in newRoleUser)
+                {
+                    dbcontext.IdsOfRolesAndUsers.Remove(roleUser);
+                }
                 UserDetails user2 = dbcontext.UserDetails.Where(i => i.UserId == Id).FirstOrDefault();
 
                 dbcontext.UserDetails.Remove(user2);
                 dbcontext.SaveChanges();
+
+               
             }
             this.BindGrid();
+        }
+
+        protected void AddUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/RegistrationPage.aspx");
         }
     }
 }
