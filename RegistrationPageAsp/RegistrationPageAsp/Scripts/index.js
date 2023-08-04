@@ -260,13 +260,16 @@
         $("#rolesDiv").toggleClass("hobbiesVisible");
     });
 
+    var newsrc;
     $("#profileimg").on("change", function (e) {
-        let newsrc = URL.createObjectURL(e.target.files[0]);
+        newsrc = URL.createObjectURL(e.target.files[0]);
         $("#photo").attr("src", newsrc);
+        
+        
     });
     $("#BackButton").click(function (e) {
         e.preventDefault();
-        window.location.href = "UsersListPage";
+        window.location.href = "userlisttabularpage";
     });
     $("#submitButton").click(function (e)
     {
@@ -311,11 +314,13 @@
                     objectData[x] = $(this).val()
                 }
             });
+            objectData["UserPhoto"] = newsrc;
+            console.log("abc -- ",newsrc);
 
             SendData();
            
-          
-            window.location.href = "UsersListPage";
+            
+            window.location.href = "userlisttabularpage";
 
             function SendData() {
                 $.ajax({

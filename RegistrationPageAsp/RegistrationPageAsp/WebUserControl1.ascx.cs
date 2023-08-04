@@ -14,12 +14,16 @@ namespace RegistrationPageAsp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (Request.QueryString["UserId"] != null)
+            if (!IsPostBack)
             {
-                objId =int.Parse(Request.QueryString["UserId"]);
-                BindGrid();
+                if (Request.QueryString["UserId"] != null)
+                {
+                    objId = int.Parse(Request.QueryString["UserId"]);
+                    BindGrid();
+                }
             }
+            
+           
         }
         private void BindGrid()
         {

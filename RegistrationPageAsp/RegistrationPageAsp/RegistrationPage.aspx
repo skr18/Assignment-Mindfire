@@ -262,11 +262,12 @@
                  <asp:Button runat="server" class="submit" id="BackButton" text="Go Back"/>
                 <br>
             </div>
+              <div id="UserNotes" class="UserNotes">
+               <sujeet:code  id="usercontrol" runat="server" />
+            </div>
 
         </div><br /><br />
-        <div id="UserNotes" class="UserNotes">
-            <sujeet:code  id="usercontrol" runat="server" />
-        </div>
+      
         
     </form>
 </body>

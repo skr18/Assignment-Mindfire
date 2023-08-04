@@ -132,6 +132,7 @@
     <Content Include="Content\demo.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\UserListTabularPage.css" />
     <Content Include="Content\UsersListPage.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -176,6 +177,8 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\index.js" />
     <Content Include="RegistrationPage.aspx" />
+    <Content Include="Scripts\UserListTabularPage.js" />
+    <Content Include="UserListTabularPage.aspx" />
     <Content Include="UsersListPage.aspx" />
     <Content Include="WebUserControl1.ascx" />
     <EntityDeploy Include="Model1.edmx">
@@ -290,6 +293,13 @@
     <Compile Include="UserDetails.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserListTabularPage.aspx.cs">
+      <DependentUpon>UserListTabularPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserListTabularPage.aspx.designer.cs">
+      <DependentUpon>UserListTabularPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserNotes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -326,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

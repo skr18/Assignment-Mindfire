@@ -44,6 +44,7 @@ namespace RegistrationPageAsp
         public string Roles { get; set; }
 
         public string userSubcription { get; set; }
+       
     }
    
     public partial class WebForm1 : System.Web.UI.Page
@@ -81,7 +82,8 @@ namespace RegistrationPageAsp
                 var allRolesId = dbcontext.IdsOfRolesAndUsers.Where(i=> i.UserId == id).Select(r=> r.RoleId);
                 foreach(var roleid in allRolesId)
                 {
-                    var rolename =dbcontext.Roles.Where(i=> i.RoleId == roleid).Select(r=> r.RoleName).FirstOrDefault();
+                    var rolename =dbcontext.Roles.Where(i=> i.RoleId == roleid).
+                        Select(r=> r.RoleName).FirstOrDefault();
                     roles += rolename + ",";
                 }
                 var data = dbcontext.UserDetails.Where(i=> i.UserId == id ).FirstOrDefault();
@@ -89,14 +91,18 @@ namespace RegistrationPageAsp
                 int stateId = data.PermanentStateId;
                 int countryId = data.PermanentCountryId;
 
-                var statename = dbcontext.States.Where(i=> i.StateId== stateId).Select(r=>r.StateName).FirstOrDefault();
-                var Countryname = dbcontext.Country.Where(i=> i.CountryId == countryId).Select(r=>r.CountryName).FirstOrDefault();
+                var statename = dbcontext.States.Where(i=> i.StateId== stateId).
+                    Select(r=>r.StateName).FirstOrDefault();
+                var Countryname = dbcontext.Country.Where(i=> i.CountryId == countryId).
+                    Select(r=>r.CountryName).FirstOrDefault();
 
                 int presentStateId = data.PresentStateId;
                 int presentCountryId = data.PresentCountryId;
 
-                var presentSatename = dbcontext.States.Where(i => i.StateId == presentStateId).Select(r => r.StateName).FirstOrDefault();
-                var presentCountryName = dbcontext.Country.Where(i => i.CountryId == presentCountryId).Select(r => r.CountryName).FirstOrDefault();
+                var presentSatename = dbcontext.States.Where(i => i.StateId == presentStateId).
+                    Select(r => r.StateName).FirstOrDefault();
+                var presentCountryName = dbcontext.Country.Where(i => i.CountryId == presentCountryId).
+                    Select(r => r.CountryName).FirstOrDefault();
 
                 obj.userFirstName = data.FirstName;
                 obj.userEmail = data.Email;
@@ -124,7 +130,7 @@ namespace RegistrationPageAsp
 
                 obj.Roles = roles;
                 obj.userSubcription = data.Subscribed;
-                 
+                
                 }
            return obj;
         }
@@ -144,8 +150,10 @@ namespace RegistrationPageAsp
             
             using (var dbcontext = new RegistrationPageEntities1())
             {
-                int countryId = dbcontext.Country.Where(i=> i.CountryName == country).Select(r=>r.CountryId).FirstOrDefault();
-                int stateId = dbcontext.States.Where(i=> i.StateName == state).Select(r=>r.StateId).FirstOrDefault();
+                int countryId = dbcontext.Country.Where(i=> i.CountryName == country).
+                    Select(r=>r.CountryId).FirstOrDefault();
+                int stateId = dbcontext.States.Where(i=> i.StateName == state).
+                    Select(r=>r.StateId).FirstOrDefault();
                 UserDetails newuser;
                 if (Id == 0)
                 {
@@ -230,7 +238,8 @@ namespace RegistrationPageAsp
 
         }
         [WebMethod(EnableSession = true)]
-        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true, ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true, 
+            ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
         //[System.Web.Services.WebMethod]
         public static List<string> GetCountry() 
         {
@@ -255,7 +264,8 @@ namespace RegistrationPageAsp
 
             using (var dbcontext = new RegistrationPageEntities1())
             {
-                int countryID = ( dbcontext.Country.Where(i=> i.CountryName==name).Select(r=> r.CountryId).FirstOrDefault());
+                int countryID = ( dbcontext.Country.Where(i=> i.CountryName==name).
+                    Select(r=> r.CountryId).FirstOrDefault());
                 var data = dbcontext.States.Where(i=> i.CountryId == countryID).ToList();
                 foreach (var role in data)
                 {

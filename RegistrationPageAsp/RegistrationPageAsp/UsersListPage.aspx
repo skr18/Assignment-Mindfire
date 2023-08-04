@@ -12,7 +12,8 @@
         <div id="container">
             <h2>Users Data</h2>
             <asp:GridView runat="server" AutoGenerateColumns="false" ID="gridview" OnRowEditing="OnRowEditing"  
-                 OnRowDeleting="OnRowDeleting" EmptyDataText="No Records To Show" DataKeyNames="UserId">
+                 OnRowDeleting="OnRowDeleting" EmptyDataText="No Users To Show" DataKeyNames="UserId" 
+                GridLines="Horizontal" HorizontalAlign="Center">
                 <Columns>
                     <asp:TemplateField HeaderText="UserId" ItemStyle-Width="50">
                         <ItemTemplate>    
@@ -39,7 +40,10 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ShowDeleteButton="true" ItemStyle-Width="120"/>
+                     <asp:CommandField ButtonType="Link" ShowEditButton="true" ItemStyle-Width="45" 
+                         ControlStyle-BorderStyle="None" ControlStyle-Font-Underline="false" /> 
+                    <asp:ButtonField ButtonType="Link" Text="Delete" ControlStyle-ForeColor="Red" CommandName="delete" 
+                        ItemStyle-Width="60" ControlStyle-Font-Underline="false" />
                 </Columns>
             </asp:GridView><br /> <br />
             <asp:Button ID="AddUser" runat="server" OnClick="AddUser_Click" Text="Add User" />
