@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="RegistrationPageModelStoreContainer" CdmEntityContainer="RegistrationPageEntities1">
+  <EntityContainerMapping StorageEntityContainer="RegistrationPageModelStoreContainer" CdmEntityContainer="RegistrationPageEntities4">
     <EntitySetMapping Name="Country">
       <EntityTypeMapping TypeName="RegistrationPageModel.Country">
         <MappingFragment StoreEntitySet="Country">
@@ -14,6 +14,7 @@
         <MappingFragment StoreEntitySet="IdsOfRolesAndUsers">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Not_requried" ColumnName="Not requried" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -37,6 +38,7 @@
     <EntitySetMapping Name="UserDetails">
       <EntityTypeMapping TypeName="RegistrationPageModel.UserDetails">
         <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -56,7 +58,17 @@
           <ScalarProperty Name="PresentStateId" ColumnName="PresentStateId" />
           <ScalarProperty Name="PresentCity" ColumnName="PresentCity" />
           <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
-          <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNotes">
+      <EntityTypeMapping TypeName="RegistrationPageModel.UserNotes">
+        <MappingFragment StoreEntitySet="UserNotes">
+          <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -70,12 +82,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserNotes">
-      <EntityTypeMapping TypeName="RegistrationPageModel.UserNotes">
-        <MappingFragment StoreEntitySet="UserNotes">
-          <ScalarProperty Name="Note" ColumnName="Note" />
+    <EntitySetMapping Name="UsersDocuments">
+      <EntityTypeMapping TypeName="RegistrationPageModel.UsersDocuments">
+        <MappingFragment StoreEntitySet="UsersDocuments">
+          <ScalarProperty Name="DocumentUrl" ColumnName="DocumentUrl" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

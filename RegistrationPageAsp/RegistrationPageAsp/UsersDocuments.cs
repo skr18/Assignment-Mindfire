@@ -12,13 +12,12 @@ namespace RegistrationPageAsp
     using System;
     using System.Collections.Generic;
     
-    public partial class IdsOfRolesAndUsers
+    public partial class UsersDocuments
     {
+        public int DocumentID { get; set; }
         public int UserId { get; set; }
-        public int RoleId { get; set; }
-        public int Not_requried { get; set; }
+        public string DocumentUrl { get; set; }
     
         public virtual UserDetails UserDetails { get; set; }
-        public virtual Roles Roles { get; set; }
     }
 }

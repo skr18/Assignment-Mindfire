@@ -15,6 +15,15 @@ namespace RegistrationPageAsp
     {
 
         /// <summary>
+        /// photo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image photo;
+
+        /// <summary>
         /// firstnameinp control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace RegistrationPageAsp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText firstnameinp;
+
+        /// <summary>
+        /// profileimg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile profileimg;
 
         /// <summary>
         /// RolesCheckBox control.
@@ -58,5 +76,14 @@ namespace RegistrationPageAsp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::RegistrationPageAsp.WebUserControl1 usercontrol;
+
+        /// <summary>
+        /// usercontrol2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::RegistrationPageAsp.WebUserControl2 usercontrol2;
     }
 }

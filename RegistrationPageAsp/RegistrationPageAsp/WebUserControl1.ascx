@@ -17,7 +17,7 @@
                             <asp:TextBox runat="server" ID="EditNote" Text='<%# Eval("Note") %>'  ></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ItemStyle-Width="45"
+                    <asp:CommandField ButtonType="Link" ShowEditButton="true" ItemStyle-Width="105"
                         ControlStyle-BorderStyle="None" ControlStyle-Font-Underline="false" /> 
                     <asp:ButtonField ButtonType="Link" Text="Delete" ControlStyle-ForeColor="Red"
                         CommandName="delete" ItemStyle-Width="60" ControlStyle-Font-Underline="false" />

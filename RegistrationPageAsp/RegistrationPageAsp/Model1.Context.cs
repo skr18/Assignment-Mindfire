@@ -13,10 +13,10 @@ namespace RegistrationPageAsp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RegistrationPageEntities1 : DbContext
+    public partial class RegistrationPageEntities4 : DbContext
     {
-        public RegistrationPageEntities1()
-            : base("name=RegistrationPageEntities1")
+        public RegistrationPageEntities4()
+            : base("name=RegistrationPageEntities4")
         {
         }
     
@@ -30,7 +30,8 @@ namespace RegistrationPageAsp
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<States> States { get; set; }
         public virtual DbSet<UserDetails> UserDetails { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserNotes> UserNotes { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UsersDocuments> UsersDocuments { get; set; }
     }
 }

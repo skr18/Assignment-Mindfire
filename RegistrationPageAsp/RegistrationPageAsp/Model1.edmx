@@ -14,11 +14,11 @@
         </EntityType>
         <EntityType Name="IdsOfRolesAndUsers">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="Not requried" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Not requried" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -58,7 +58,8 @@
           <Property Name="PresentStateId" Type="int" Nullable="false" />
           <Property Name="PresentCity" Type="varchar" MaxLength="50" />
           <Property Name="Subscribed" Type="varchar" MaxLength="50" />
-          <Property Name="Hobbies" Type="varchar" MaxLength="50" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="5000" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserNotes">
           <Key>
@@ -67,6 +68,7 @@
           <Property Name="NoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Note" Type="varchar" MaxLength="50" />
+          <Property Name="IsPrivate" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -77,15 +79,23 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Role" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="UsersDocuments">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DocumentUrl" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <Association Name="FK__IdsOfRole__RoleI__412EB0B6">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
           <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="IdsOfRolesAndUsers">
-              <PropertyRef Name="RoleId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -101,31 +111,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IdsOfRole__UserI__4316F928">
+        <Association Name="FK__UsersDocu__UserI__09A971A2">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
-          <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
+          <End Role="UsersDocuments" Type="Self.UsersDocuments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserDetails">
               <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="IdsOfRolesAndUsers">
+            <Dependent Role="UsersDocuments">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IdsOfRole__UserI__5AEE82B9">
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
-          <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="IdsOfRolesAndUsers">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__States__CountryI__5BE2A6F2">
+        <Association Name="FK_States_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="States" Type="Self.States" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Perma__5535A963">
+        <Association Name="FK_UserDetails_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,19 +147,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Perma__5DCAEF64">
-          <End Role="States" Type="Self.States" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="States">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PermanentStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Perma__5FB337D6">
+        <Association Name="FK_UserDetails_Country1">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,7 +159,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Perma__619B8048">
+        <Association Name="FK_UserDetails_States">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="PresentStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_States1">
           <End Role="States" Type="Self.States" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -185,55 +183,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Prese__5441852A">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentCountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__5CD6CB2B">
-          <End Role="States" Type="Self.States" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="States">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__5EBF139D">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentCountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__60A75C0F">
-          <End Role="States" Type="Self.States" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="States">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserNotes__UserI__6477ECF3">
+        <Association Name="FK_UserNotes_UserDetails">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
           <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -253,59 +203,40 @@
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotes" EntityType="Self.UserNotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersDocuments" EntityType="Self.UsersDocuments" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__IdsOfRole__RoleI__412EB0B6" Association="Self.FK__IdsOfRole__RoleI__412EB0B6">
-            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
           </AssociationSet>
           <AssociationSet Name="FK__IdsOfRole__RoleI__59FA5E80" Association="Self.FK__IdsOfRole__RoleI__59FA5E80">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__UserI__4316F928" Association="Self.FK__IdsOfRole__UserI__4316F928">
+          <AssociationSet Name="FK__UsersDocu__UserI__09A971A2" Association="Self.FK__UsersDocu__UserI__09A971A2">
             <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
+            <End Role="UsersDocuments" EntitySet="UsersDocuments" />
           </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__UserI__5AEE82B9" Association="Self.FK__IdsOfRole__UserI__5AEE82B9">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__States__CountryI__5BE2A6F2" Association="Self.FK__States__CountryI__5BE2A6F2">
+          <AssociationSet Name="FK_States_Country" Association="Self.FK_States_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="States" EntitySet="States" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5535A963" Association="Self.FK__UserDetai__Perma__5535A963">
+          <AssociationSet Name="FK_UserDetails_Country" Association="Self.FK_UserDetails_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="UserDetails" EntitySet="UserDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5DCAEF64" Association="Self.FK__UserDetai__Perma__5DCAEF64">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5FB337D6" Association="Self.FK__UserDetai__Perma__5FB337D6">
+          <AssociationSet Name="FK_UserDetails_Country1" Association="Self.FK_UserDetails_Country1">
             <End Role="Country" EntitySet="Country" />
             <End Role="UserDetails" EntitySet="UserDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__619B8048" Association="Self.FK__UserDetai__Perma__619B8048">
+          <AssociationSet Name="FK_UserDetails_States" Association="Self.FK_UserDetails_States">
             <End Role="States" EntitySet="States" />
             <End Role="UserDetails" EntitySet="UserDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5441852A" Association="Self.FK__UserDetai__Prese__5441852A">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5CD6CB2B" Association="Self.FK__UserDetai__Prese__5CD6CB2B">
+          <AssociationSet Name="FK_UserDetails_States1" Association="Self.FK_UserDetails_States1">
             <End Role="States" EntitySet="States" />
             <End Role="UserDetails" EntitySet="UserDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5EBF139D" Association="Self.FK__UserDetai__Prese__5EBF139D">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__60A75C0F" Association="Self.FK__UserDetai__Prese__60A75C0F">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserNotes__UserI__6477ECF3" Association="Self.FK__UserNotes__UserI__6477ECF3">
+          <AssociationSet Name="FK_UserNotes_UserDetails" Association="Self.FK_UserNotes_UserDetails">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="UserNotes" EntitySet="UserNotes" />
           </AssociationSet>
@@ -320,23 +251,19 @@
           </Key>
           <Property Name="CountryId" Type="Int32" Nullable="false" />
           <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="States" Relationship="Self.FK__States__CountryI__5BE2A6F2" FromRole="Country" ToRole="States" />
-          <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__Perma__5535A963" FromRole="Country" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails1" Relationship="Self.FK__UserDetai__Perma__5FB337D6" FromRole="Country" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails2" Relationship="Self.FK__UserDetai__Prese__5441852A" FromRole="Country" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails3" Relationship="Self.FK__UserDetai__Prese__5EBF139D" FromRole="Country" ToRole="UserDetails" />
+          <NavigationProperty Name="States" Relationship="Self.FK_States_Country" FromRole="Country" ToRole="States" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetails_Country" FromRole="Country" ToRole="UserDetails" />
+          <NavigationProperty Name="UserDetails1" Relationship="Self.FK_UserDetails_Country1" FromRole="Country" ToRole="UserDetails" />
         </EntityType>
         <EntityType Name="IdsOfRolesAndUsers">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="Not_requried" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="IdsOfRolesAndUsers" ToRole="Roles" />
-          <NavigationProperty Name="Roles1" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="IdsOfRolesAndUsers" ToRole="Roles" />
-          <NavigationProperty Name="UserDetails" Relationship="Self.FK__IdsOfRole__UserI__4316F928" FromRole="IdsOfRolesAndUsers" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails1" Relationship="Self.FK__IdsOfRole__UserI__5AEE82B9" FromRole="IdsOfRolesAndUsers" ToRole="UserDetails" />
+          <Property Name="Not_requried" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="IdsOfRolesAndUsers" ToRole="UserDetails" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="IdsOfRolesAndUsers" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -344,8 +271,7 @@
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="Roles" ToRole="IdsOfRolesAndUsers" />
-          <NavigationProperty Name="IdsOfRolesAndUsers1" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="Roles" ToRole="IdsOfRolesAndUsers" />
+          <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="Roles" ToRole="IdsOfRolesAndUsers" />
         </EntityType>
         <EntityType Name="States">
           <Key>
@@ -354,11 +280,9 @@
           <Property Name="StateId" Type="Int32" Nullable="false" />
           <Property Name="CountryId" Type="Int32" />
           <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Country" Relationship="Self.FK__States__CountryI__5BE2A6F2" FromRole="States" ToRole="Country" />
-          <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__Perma__5DCAEF64" FromRole="States" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails1" Relationship="Self.FK__UserDetai__Perma__619B8048" FromRole="States" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails2" Relationship="Self.FK__UserDetai__Prese__5CD6CB2B" FromRole="States" ToRole="UserDetails" />
-          <NavigationProperty Name="UserDetails3" Relationship="Self.FK__UserDetai__Prese__60A75C0F" FromRole="States" ToRole="UserDetails" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_States_Country" FromRole="States" ToRole="Country" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetails_States" FromRole="States" ToRole="UserDetails" />
+          <NavigationProperty Name="UserDetails1" Relationship="Self.FK_UserDetails_States1" FromRole="States" ToRole="UserDetails" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -383,18 +307,25 @@
           <Property Name="PresentStateId" Type="Int32" Nullable="false" />
           <Property Name="PresentCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Subscribed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Hobbies" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Country" Relationship="Self.FK__UserDetai__Perma__5535A963" FromRole="UserDetails" ToRole="Country" />
-          <NavigationProperty Name="Country1" Relationship="Self.FK__UserDetai__Perma__5FB337D6" FromRole="UserDetails" ToRole="Country" />
-          <NavigationProperty Name="Country2" Relationship="Self.FK__UserDetai__Prese__5441852A" FromRole="UserDetails" ToRole="Country" />
-          <NavigationProperty Name="Country3" Relationship="Self.FK__UserDetai__Prese__5EBF139D" FromRole="UserDetails" ToRole="Country" />
-          <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__UserI__4316F928" FromRole="UserDetails" ToRole="IdsOfRolesAndUsers" />
-          <NavigationProperty Name="IdsOfRolesAndUsers1" Relationship="Self.FK__IdsOfRole__UserI__5AEE82B9" FromRole="UserDetails" ToRole="IdsOfRolesAndUsers" />
-          <NavigationProperty Name="States" Relationship="Self.FK__UserDetai__Perma__5DCAEF64" FromRole="UserDetails" ToRole="States" />
-          <NavigationProperty Name="States1" Relationship="Self.FK__UserDetai__Perma__619B8048" FromRole="UserDetails" ToRole="States" />
-          <NavigationProperty Name="States2" Relationship="Self.FK__UserDetai__Prese__5CD6CB2B" FromRole="UserDetails" ToRole="States" />
-          <NavigationProperty Name="States3" Relationship="Self.FK__UserDetai__Prese__60A75C0F" FromRole="UserDetails" ToRole="States" />
-          <NavigationProperty Name="UserNotes" Relationship="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" FromRole="UserDetails" ToRole="UserNotes" />
+          <Property Name="ImageUrl" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_UserDetails_Country" FromRole="UserDetails" ToRole="Country" />
+          <NavigationProperty Name="Country1" Relationship="Self.FK_UserDetails_Country1" FromRole="UserDetails" ToRole="Country" />
+          <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="UserDetails" ToRole="IdsOfRolesAndUsers" />
+          <NavigationProperty Name="States" Relationship="Self.FK_UserDetails_States" FromRole="UserDetails" ToRole="States" />
+          <NavigationProperty Name="States1" Relationship="Self.FK_UserDetails_States1" FromRole="UserDetails" ToRole="States" />
+          <NavigationProperty Name="UserNotes" Relationship="Self.FK_UserNotes_UserDetails" FromRole="UserDetails" ToRole="UserNotes" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsersDocuments" Relationship="RegistrationPageModel.FK__UsersDocu__UserI__09A971A2" FromRole="UserDetails" ToRole="UsersDocuments" />
+        </EntityType>
+        <EntityType Name="UserNotes">
+          <Key>
+            <PropertyRef Name="NoteId" />
+          </Key>
+          <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserNotes_UserDetails" FromRole="UserNotes" ToRole="UserDetails" />
+          <Property Name="IsPrivate" Type="Int32" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -405,7 +336,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK__States__CountryI__5BE2A6F2">
+        <Association Name="FK_States_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="States" Type="Self.States" Multiplicity="*" />
           <ReferentialConstraint>
@@ -417,7 +348,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Perma__5535A963">
+        <Association Name="FK_UserDetails_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -429,7 +360,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Perma__5FB337D6">
+        <Association Name="FK_UserDetails_Country1">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,42 +369,18 @@
             </Principal>
             <Dependent Role="UserDetails">
               <PropertyRef Name="PermanentCountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__5441852A">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentCountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__5EBF139D">
-          <End Role="Country" Type="Self.Country" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentCountryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__IdsOfRole__RoleI__412EB0B6">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
           <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="IdsOfRolesAndUsers">
-              <PropertyRef Name="RoleId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -489,55 +396,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IdsOfRole__UserI__4316F928">
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
-          <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="IdsOfRolesAndUsers">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__IdsOfRole__UserI__5AEE82B9">
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
-          <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="IdsOfRolesAndUsers">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Perma__5DCAEF64">
-          <End Role="States" Type="Self.States" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="States">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PermanentStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Perma__619B8048">
-          <End Role="States" Type="Self.States" Multiplicity="1" />
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="States">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="UserDetails">
-              <PropertyRef Name="PermanentStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserDetai__Prese__5CD6CB2B">
+        <Association Name="FK_UserDetails_States">
           <End Role="States" Type="Self.States" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -549,7 +408,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserDetai__Prese__60A75C0F">
+        <Association Name="FK_UserDetails_States1">
           <End Role="States" Type="Self.States" Multiplicity="1" />
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -557,87 +416,13 @@
               <PropertyRef Name="StateId" />
             </Principal>
             <Dependent Role="UserDetails">
-              <PropertyRef Name="PresentStateId" />
+              <PropertyRef Name="PermanentStateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RegistrationPageEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Country" EntityType="Self.Country" />
-          <EntitySet Name="IdsOfRolesAndUsers" EntityType="Self.IdsOfRolesAndUsers" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="States" EntityType="Self.States" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__States__CountryI__5BE2A6F2" Association="Self.FK__States__CountryI__5BE2A6F2">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="States" EntitySet="States" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5535A963" Association="Self.FK__UserDetai__Perma__5535A963">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5FB337D6" Association="Self.FK__UserDetai__Perma__5FB337D6">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5441852A" Association="Self.FK__UserDetai__Prese__5441852A">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5EBF139D" Association="Self.FK__UserDetai__Prese__5EBF139D">
-            <End Role="Country" EntitySet="Country" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__RoleI__412EB0B6" Association="Self.FK__IdsOfRole__RoleI__412EB0B6">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__RoleI__59FA5E80" Association="Self.FK__IdsOfRole__RoleI__59FA5E80">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__UserI__4316F928" Association="Self.FK__IdsOfRole__UserI__4316F928">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IdsOfRole__UserI__5AEE82B9" Association="Self.FK__IdsOfRole__UserI__5AEE82B9">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__5DCAEF64" Association="Self.FK__UserDetai__Perma__5DCAEF64">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Perma__619B8048" Association="Self.FK__UserDetai__Perma__619B8048">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__5CD6CB2B" Association="Self.FK__UserDetai__Prese__5CD6CB2B">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__Prese__60A75C0F" Association="Self.FK__UserDetai__Prese__60A75C0F">
-            <End Role="States" EntitySet="States" />
-            <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <EntitySet Name="UserNotes" EntityType="RegistrationPageModel.UserNotes" />
-          <AssociationSet Name="FK__UserNotes__UserI__6477ECF3" Association="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="UserNotes" EntitySet="UserNotes" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="UserNotes">
-          <Key>
-            <PropertyRef Name="NoteId" />
-          </Key>
-          <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserDetails" Relationship="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" FromRole="UserNotes" ToRole="UserDetails" />
-        </EntityType>
-        <Association Name="FK__UserNotes__UserI__6477ECF3">
-          <End Type="RegistrationPageModel.UserDetails" Role="UserDetails" Multiplicity="1" />
-          <End Type="RegistrationPageModel.UserNotes" Role="UserNotes" Multiplicity="*" />
+        <Association Name="FK_UserNotes_UserDetails">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+          <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserDetails">
               <PropertyRef Name="UserId" />
@@ -647,12 +432,79 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="RegistrationPageEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="IdsOfRolesAndUsers" EntityType="Self.IdsOfRolesAndUsers" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" />
+          <EntitySet Name="UserNotes" EntityType="Self.UserNotes" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_States_Country" Association="Self.FK_States_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_Country" Association="Self.FK_UserDetails_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_Country1" Association="Self.FK_UserDetails_Country1">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdsOfRole__RoleI__412EB0B6" Association="Self.FK__IdsOfRole__RoleI__412EB0B6">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdsOfRole__RoleI__59FA5E80" Association="Self.FK__IdsOfRole__RoleI__59FA5E80">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_States" Association="Self.FK_UserDetails_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_States1" Association="Self.FK_UserDetails_States1">
+            <End Role="States" EntitySet="States" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserNotes_UserDetails" Association="Self.FK_UserNotes_UserDetails">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UserNotes" EntitySet="UserNotes" />
+          </AssociationSet>
+          <EntitySet Name="UsersDocuments" EntityType="RegistrationPageModel.UsersDocuments" />
+          <AssociationSet Name="FK__UsersDocu__UserI__09A971A2" Association="RegistrationPageModel.FK__UsersDocu__UserI__09A971A2">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UsersDocuments" EntitySet="UsersDocuments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UsersDocuments">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentUrl" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserDetails" Relationship="RegistrationPageModel.FK__UsersDocu__UserI__09A971A2" FromRole="UsersDocuments" ToRole="UserDetails" />
+        </EntityType>
+        <Association Name="FK__UsersDocu__UserI__09A971A2">
+          <End Type="RegistrationPageModel.UserDetails" Role="UserDetails" Multiplicity="1" />
+          <End Type="RegistrationPageModel.UsersDocuments" Role="UsersDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersDocuments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RegistrationPageModelStoreContainer" CdmEntityContainer="RegistrationPageEntities1">
+        <EntityContainerMapping StorageEntityContainer="RegistrationPageModelStoreContainer" CdmEntityContainer="RegistrationPageEntities4">
           <EntitySetMapping Name="Country">
             <EntityTypeMapping TypeName="RegistrationPageModel.Country">
               <MappingFragment StoreEntitySet="Country">
@@ -666,6 +518,7 @@
               <MappingFragment StoreEntitySet="IdsOfRolesAndUsers">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Not_requried" ColumnName="Not requried" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -689,6 +542,7 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="RegistrationPageModel.UserDetails">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -708,7 +562,17 @@
                 <ScalarProperty Name="PresentStateId" ColumnName="PresentStateId" />
                 <ScalarProperty Name="PresentCity" ColumnName="PresentCity" />
                 <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
-                <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserNotes">
+            <EntityTypeMapping TypeName="RegistrationPageModel.UserNotes">
+              <MappingFragment StoreEntitySet="UserNotes">
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -722,12 +586,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserNotes">
-            <EntityTypeMapping TypeName="RegistrationPageModel.UserNotes">
-              <MappingFragment StoreEntitySet="UserNotes">
-                <ScalarProperty Name="Note" ColumnName="Note" />
+          <EntitySetMapping Name="UsersDocuments">
+            <EntityTypeMapping TypeName="RegistrationPageModel.UsersDocuments">
+              <MappingFragment StoreEntitySet="UsersDocuments">
+                <ScalarProperty Name="DocumentUrl" ColumnName="DocumentUrl" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

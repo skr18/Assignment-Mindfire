@@ -20,8 +20,6 @@ namespace RegistrationPageAsp
             this.States = new HashSet<States>();
             this.UserDetails = new HashSet<UserDetails>();
             this.UserDetails1 = new HashSet<UserDetails>();
-            this.UserDetails2 = new HashSet<UserDetails>();
-            this.UserDetails3 = new HashSet<UserDetails>();
         }
     
         public int CountryId { get; set; }
@@ -33,9 +31,5 @@ namespace RegistrationPageAsp
         public virtual ICollection<UserDetails> UserDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserDetails> UserDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserDetails> UserDetails2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserDetails> UserDetails3 { get; set; }
     }
 }

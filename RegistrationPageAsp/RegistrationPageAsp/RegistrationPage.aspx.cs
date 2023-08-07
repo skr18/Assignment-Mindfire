@@ -9,6 +9,7 @@ using Microsoft.Ajax.Utilities;
 using System.Xml.Linq;
 using System.Data.Entity.Migrations;
 using System.Web.Services;
+using static RegistrationPageAsp.WebUserControl1;
 
 namespace RegistrationPageAsp
 {
@@ -18,7 +19,7 @@ namespace RegistrationPageAsp
         public string userFirstName { get; set; }
         public string userLastName { get; set; }
         public string userEmail { get; set; }
-        
+        public string userPassword { get; set; }
         public string userPermanentCountry { get; set; }
         public string userPermanentState { get; set; }
         public string userPresentCountry { get; set; }
@@ -44,12 +45,13 @@ namespace RegistrationPageAsp
         public string Roles { get; set; }
 
         public string userSubcription { get; set; }
-       
+
+        public string UserPhoto { get; set; }
+
     }
    
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm1 : AuthorizationClass
     {
-        Var name;
         static int Id=0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,73 +68,98 @@ namespace RegistrationPageAsp
             {
                 usercontrol.objId = Id;
             }
+            bool isAdmin = checkIsAdmin();
+            int sessionUserId = int.Parse(Session["UserId"].ToString());
+            int queryId = int.Parse(Request.QueryString["UserId"].ToString());
+            if (isAdmin == false && sessionUserId != queryId )
+            {
+                Response.Redirect("loginpage");
+            }
+            displayImage();
 
         }
 
-        [System.Web.Services.WebMethod]
+            [System.Web.Services.WebMethod]
         public static Object sendUserData(string UserId)
         {
                 Temp obj = new Temp();
                 
                 int id = int.Parse(UserId);
                 Id = id;
-                using (var dbcontext = new RegistrationPageEntities1())
+                using (var dbcontext = new RegistrationPageEntities4())
                 {
-                string roles = "";
-                var allRolesId = dbcontext.IdsOfRolesAndUsers.Where(i=> i.UserId == id).Select(r=> r.RoleId);
-                foreach(var roleid in allRolesId)
-                {
-                    var rolename =dbcontext.Roles.Where(i=> i.RoleId == roleid).
-                        Select(r=> r.RoleName).FirstOrDefault();
-                    roles += rolename + ",";
-                }
-                var data = dbcontext.UserDetails.Where(i=> i.UserId == id ).FirstOrDefault();
+                
+                    string roles = "";
+                    var allRolesId = dbcontext.IdsOfRolesAndUsers.Where(i=> i.UserId == id).Select(r=> r.RoleId);
+                    foreach(var roleid in allRolesId)
+                    {
+                        var rolename =dbcontext.Roles.Where(i=> i.RoleId == roleid).
+                            Select(r=> r.RoleName).FirstOrDefault();
+                        roles += rolename + ",";
+                    }
+                    var data = dbcontext.UserDetails.Where(i=> i.UserId == id ).FirstOrDefault();
 
-                int stateId = data.PermanentStateId;
-                int countryId = data.PermanentCountryId;
+                    int stateId = data.PermanentStateId;
+                    int countryId = data.PermanentCountryId;
 
-                var statename = dbcontext.States.Where(i=> i.StateId== stateId).
-                    Select(r=>r.StateName).FirstOrDefault();
-                var Countryname = dbcontext.Country.Where(i=> i.CountryId == countryId).
-                    Select(r=>r.CountryName).FirstOrDefault();
+                    var statename = dbcontext.States.Where(i=> i.StateId== stateId).
+                        Select(r=>r.StateName).FirstOrDefault();
+                    var Countryname = dbcontext.Country.Where(i=> i.CountryId == countryId).
+                        Select(r=>r.CountryName).FirstOrDefault();
 
-                int presentStateId = data.PresentStateId;
-                int presentCountryId = data.PresentCountryId;
+                    int presentStateId = data.PresentStateId;
+                    int presentCountryId = data.PresentCountryId;
 
-                var presentSatename = dbcontext.States.Where(i => i.StateId == presentStateId).
-                    Select(r => r.StateName).FirstOrDefault();
-                var presentCountryName = dbcontext.Country.Where(i => i.CountryId == presentCountryId).
-                    Select(r => r.CountryName).FirstOrDefault();
+                    var presentSatename = dbcontext.States.Where(i => i.StateId == presentStateId).
+                        Select(r => r.StateName).FirstOrDefault();
+                    var presentCountryName = dbcontext.Country.Where(i => i.CountryId == presentCountryId).
+                        Select(r => r.CountryName).FirstOrDefault();
 
-                obj.userFirstName = data.FirstName;
-                obj.userEmail = data.Email;
-                obj.userLastName =data.LastName;
-                obj.userDob = data.Dob;
-                obj.userGender = data.Gender;
+                    obj.userFirstName = data.FirstName;
+                    obj.userEmail = data.Email;
+                    obj.userLastName =data.LastName;
+                    obj.userPassword = data.Password;
+                    obj.userDob = data.Dob;
+                    obj.userGender = data.Gender;
 
-                obj.userPermanentAddress1 = data.PermanentAddressLine1;
-                obj.userPermanentAddress2 = data.PermanentAddressLine2;
+                    obj.userPermanentAddress1 = data.PermanentAddressLine1;
+                    obj.userPermanentAddress2 = data.PermanentAddressLine2;
 
-                obj.userPresentAddress1 = data.PresentAddressLine1;
-                obj.userPresentAddress2 = data.PresentAddressLine2;
+                    obj.userPresentAddress1 = data.PresentAddressLine1;
+                    obj.userPresentAddress2 = data.PresentAddressLine2;
 
-                obj.userPermanentState = statename;
-                obj.userPermanentCountry = Countryname;
+                    obj.userPermanentState = statename;
+                    obj.userPermanentCountry = Countryname;
 
-                obj.userPresentCountry = presentCountryName;
-                obj.userPresentState = presentSatename;
+                    obj.userPresentCountry = presentCountryName;
+                    obj.userPresentState = presentSatename;
 
-                obj.userPermanentCity = data.PermanentCity;
-                obj.userPresentCity = data.PresentCity;
+                    obj.userPermanentCity = data.PermanentCity;
+                    obj.userPresentCity = data.PresentCity;
 
-                obj.userPermanentPostal = data.PermanentPostalCode;
-                obj.userPresentPostal = data.PresentPostalCode;
+                    obj.userPermanentPostal = data.PermanentPostalCode;
+                    obj.userPresentPostal = data.PresentPostalCode;
 
-                obj.Roles = roles;
-                obj.userSubcription = data.Subscribed;
+                    obj.Roles = roles;
+                    obj.userSubcription = data.Subscribed;
+                    obj.UserPhoto = data.ImageUrl;             
                 
                 }
            return obj;
+        }
+
+        public void displayImage()
+        {
+            int id = int.Parse(Request.QueryString["UserId"].ToString());
+            using (var dbcontext = new RegistrationPageEntities4())
+            {
+                var data = dbcontext.UserDetails.Where(i => i.UserId == id).Select(r=> r.ImageUrl).FirstOrDefault();
+
+                if (data != null)
+                {
+                    photo.ImageUrl = "ImageDisplay.ashx?ImageName=" + data;
+                }
+            }
         }
         
         [System.Web.Services.WebMethod]
@@ -148,7 +175,7 @@ namespace RegistrationPageAsp
             var Roles = data.Roles;
 
             
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 int countryId = dbcontext.Country.Where(i=> i.CountryName == country).
                     Select(r=>r.CountryId).FirstOrDefault();
@@ -186,7 +213,8 @@ namespace RegistrationPageAsp
                 newuser.PresentPostalCode = data.userPresentPostal;
                 newuser.PermanentPostalCode = data.userPermanentPostal;
                 newuser.Subscribed = data.userSubcription;
-
+                newuser.Password = data.userPassword;
+                newuser.ImageUrl = data.UserPhoto;
                 if(Id == 0)
                 {
                     dbcontext.UserDetails.Add(newuser);
@@ -198,6 +226,7 @@ namespace RegistrationPageAsp
                // IdsOfRolesAndUsers newRoleUser;
                 if (Id != 0)
                 {
+                   
                     var newRoleUser = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == Id);
                     foreach (var roleUser in newRoleUser)
                     {
@@ -225,7 +254,7 @@ namespace RegistrationPageAsp
 
         protected void SetUserRoles()
         {
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 var data = dbcontext.Roles;
                 foreach (var role in data)
@@ -245,7 +274,7 @@ namespace RegistrationPageAsp
         {
             List<string> AllCountry = new List<string>();
 
-            using(var dbcontext = new RegistrationPageEntities1())
+            using(var dbcontext = new RegistrationPageEntities4())
             {
                 var data = dbcontext.Country;
                 foreach (var role in data)
@@ -256,13 +285,33 @@ namespace RegistrationPageAsp
             return AllCountry;
         }
 
+        [WebMethod(EnableSession = true)]
+        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true,
+           ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        public static bool checkIsAdmin()
+        {
+            bool isAdmin = AuthorizationClass.CheckIsAdmin();
+            if (isAdmin== true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+       
+        [System.Web.Services.WebMethod]
+        public static void sendDataToUserControl(string isChecked)
+        {
+            myUserControl.Status = isChecked;
+            
+        }
 
         [System.Web.Services.WebMethod]
         public static List<string> GetState(string name)
         {
             List<string> AllState = new List<string>();
 
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 int countryID = ( dbcontext.Country.Where(i=> i.CountryName==name).
                     Select(r=> r.CountryId).FirstOrDefault());
@@ -275,5 +324,6 @@ namespace RegistrationPageAsp
             return AllState;
         }
 
+       
     }
 }

@@ -31,7 +31,7 @@ namespace RegistrationPageAsp
         {
             List<Temp> obj = new List<Temp>();
 
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 
                 var data = dbcontext.UserDetails.ToList();
@@ -66,7 +66,7 @@ namespace RegistrationPageAsp
         public static void deleteData(string Id)
         {
             int id = int.Parse(Id);
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 var UserRoles = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == id);
                 foreach (var role in UserRoles)

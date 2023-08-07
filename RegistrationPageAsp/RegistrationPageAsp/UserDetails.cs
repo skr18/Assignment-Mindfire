@@ -18,8 +18,8 @@ namespace RegistrationPageAsp
         public UserDetails()
         {
             this.IdsOfRolesAndUsers = new HashSet<IdsOfRolesAndUsers>();
-            this.IdsOfRolesAndUsers1 = new HashSet<IdsOfRolesAndUsers>();
             this.UserNotes = new HashSet<UserNotes>();
+            this.UsersDocuments = new HashSet<UsersDocuments>();
         }
     
         public int UserId { get; set; }
@@ -41,21 +41,18 @@ namespace RegistrationPageAsp
         public int PresentStateId { get; set; }
         public string PresentCity { get; set; }
         public string Subscribed { get; set; }
-        public string Hobbies { get; set; }
+        public string ImageUrl { get; set; }
+        public string Password { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Country Country1 { get; set; }
-        public virtual Country Country2 { get; set; }
-        public virtual Country Country3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IdsOfRolesAndUsers> IdsOfRolesAndUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IdsOfRolesAndUsers> IdsOfRolesAndUsers1 { get; set; }
         public virtual States States { get; set; }
         public virtual States States1 { get; set; }
-        public virtual States States2 { get; set; }
-        public virtual States States3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserNotes> UserNotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersDocuments> UsersDocuments { get; set; }
     }
 }

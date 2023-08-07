@@ -4,28 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="409c22aaeef546f0b17de3f38ac86e0a" Name="Diagram1">
-        <EntityTypeShape EntityType="RegistrationPageModel.Country" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistrationPageModel.IdsOfRolesAndUsers" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistrationPageModel.Roles" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RegistrationPageModel.States" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+      <Diagram DiagramId="802e5fbd1da14227b71890ab184861e4" Name="Diagram1">
+        <EntityTypeShape EntityType="RegistrationPageModel.Country" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RegistrationPageModel.IdsOfRolesAndUsers" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RegistrationPageModel.Roles" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RegistrationPageModel.States" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="RegistrationPageModel.UserDetails" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RegistrationPageModel.UserNotes" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="RegistrationPageModel.Users" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="RegistrationPageModel.FK__States__CountryI__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Perma__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Perma__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="RegistrationPageModel.FK_States_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="RegistrationPageModel.FK_UserDetails_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="RegistrationPageModel.FK_UserDetails_Country1" ManuallyRouted="false" />
         <AssociationConnector Association="RegistrationPageModel.FK__IdsOfRole__RoleI__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="RegistrationPageModel.FK__IdsOfRole__RoleI__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__IdsOfRole__UserI__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__IdsOfRole__UserI__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Perma__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Perma__619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserDetai__Prese__60A75C0F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="RegistrationPageModel.UserNotes" Width="1.5" PointX="7.5" PointY="6.75" />
-        <AssociationConnector Association="RegistrationPageModel.FK__UserNotes__UserI__6477ECF3" />
+        <AssociationConnector Association="RegistrationPageModel.FK_UserDetails_States" ManuallyRouted="false" />
+        <AssociationConnector Association="RegistrationPageModel.FK_UserDetails_States1" ManuallyRouted="false" />
+        <AssociationConnector Association="RegistrationPageModel.FK_UserNotes_UserDetails" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RegistrationPageModel.UsersDocuments" Width="1.5" PointX="7.5" PointY="0.75" />
+        <AssociationConnector Association="RegistrationPageModel.FK__UsersDocu__UserI__09A971A2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

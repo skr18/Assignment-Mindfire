@@ -4,6 +4,73 @@
     const urlParams = new URLSearchParams(queryString);
     id = urlParams.get('UserId');
 
+    var isAdmin;
+    checkIfAdmin();
+    let responce = decodeURIComponent(document.cookie).split(";")
+    console.log(responce)
+    let windowOpen ="home"
+    if (responce[0] != null) {
+        let curTab = responce[0].split("=")
+        windowOpen = curTab[1];
+    }
+   
+
+    if (windowOpen == "home") {
+        setHomeTab();
+    }
+    if (windowOpen == "note") {
+        setNoteTab();
+    }
+    if (windowOpen == "doc") {
+        setDocTab();
+    }
+
+    function checkIfAdmin() {
+        $.ajax({
+            type: "GET",
+            url: "RegistrationPage.aspx/checkIsAdmin",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function (responce) {
+                isAdmin = responce.d;
+                console.log("yes " + responce.d)
+
+                if (isAdmin == true) {
+                    addCheckBox();
+                }
+            },
+            failure: function (response) {
+                alert("failure" + response.d);
+            }
+
+        })
+    }
+   
+    function addCheckBox() {
+        $("#privateCheckboxDiv").removeClass();
+    }
+    $("#privateMsgCheckbox").click(function () {
+        var data = { "isChecked": "true" };
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(data),
+            url: "RegistrationPage.aspx/sendDataToUserControl",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function (responce) {
+                console.log("done")
+            },
+            failure: function (response) {
+                alert("failure" + response.d);
+            }
+
+        })
+        //document.cookie = "isPrivateNoteChecked=true"
+
+    });
+
     if (id != null) {
         getData(id);
         function getData(ids) {
@@ -54,6 +121,7 @@
         if (datas.length != 0) {
             $("#firstnameinp").val(datas["userFirstName"]);
             $("#emailinp").val(datas["userEmail"]);
+            $("#passinp").val(datas["userPassword"]);
 
             $("#lastnameinp").val(datas["userLastName"]);
             $("#dobinp").val(datas["userDob"]);
@@ -100,6 +168,60 @@
             $("#BackButton").attr('value', 'Cancel');
             $("#UserNotes").css('display', 'block');
         }
+    }
+
+    $("#home").click(function () {
+
+        setHomeTab();
+   
+
+    });
+    function setHomeTab() {
+
+        $("#document").removeClass();
+        $("#note").removeClass();
+        $("#home").addClass("active");
+       // Cookies.set('activeTab', 'home');
+        document.cookie = "activeTab=home"
+        $("#userProfile").removeClass();
+        $("#userProfile").addClass("container");
+        $("#userNotes").addClass("hide");
+        $("#userDocuments").addClass("hide");
+    }
+
+
+    $("#note").click(function () {
+
+        setNoteTab();
+
+    });
+    function setNoteTab() {
+        $("#home").removeClass();
+        $("#document").removeClass();
+        $("#note").addClass("active");
+        document.cookie = "activeTab=note"
+        //Cookies.set('activeTab', 'note');
+        $("#userNotes").removeClass();
+        $("#userNotes").addClass("container");
+        $("#userProfile").addClass("hide");
+        $("#userDocuments").addClass("hide");
+    }
+
+    $("#document").click(function () {
+
+
+        setDocTab();
+
+    });
+    function setDocTab() {
+        $("#home").removeClass();
+        $("#note").removeClass();
+        $("#document").addClass("active");
+        document.cookie = "activeTab=doc"
+        $("#userDocuments").removeClass();
+        $("#userDocuments").addClass("container");
+        $("#userNotes").addClass("hide");
+        $("#userProfile").addClass("hide");
     }
 
     $("#state").click(function () {
@@ -264,12 +386,37 @@
     $("#profileimg").on("change", function (e) {
         newsrc = URL.createObjectURL(e.target.files[0]);
         $("#photo").attr("src", newsrc);
+        newsrc = $("#profileimg").get(0).files[0].name;
+        imgData = $("#profileimg").get(0).files[0]
+        console.log(newsrc)
+        console.log(imgData)
+        const formData = new FormData();
+        formData.append(newsrc,imgData);
+        console.log(formData)
         
-        
+        $.ajax({
+            type: "POST",
+            data: formData,
+            url: "ImageHandler.ashx",
+            processData: false,
+            contentType: false,
+            success: function (responce) {
+                console.log("done")
+            },
+            failure: function (response) {
+                alert("failure" + response.d);
+            }
+
+        })
     });
     $("#BackButton").click(function (e) {
         e.preventDefault();
-        window.location.href = "userlisttabularpage";
+       
+        if (isAdmin == true) {
+            window.location.href = "userslistpage";
+        } else {
+            window.location.href = "loginpage";
+        }
     });
     $("#submitButton").click(function (e)
     {
@@ -312,6 +459,7 @@
                     $(`#${$(this).attr("data_id")}`).text($(this).val());
                     let x = $(this).attr("data_id");
                     objectData[x] = $(this).val()
+                    
                 }
             });
             objectData["UserPhoto"] = newsrc;
@@ -320,7 +468,7 @@
             SendData();
            
             
-            window.location.href = "userlisttabularpage";
+            //window.location.href = "userlisttabularpage";
 
             function SendData() {
                 $.ajax({
@@ -331,6 +479,7 @@
                     async: false,
                     dataType: "json",
                     success: function (responce) {
+                        alert("Data updated sucessfully")
                         console.log("succes " + responce.d);
                     },
                     failure: function (response) {

@@ -1,20 +1,42 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace RegistrationPageAsp
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class WebForm2 : AuthorizationClass
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindGrid();
+                if(Session["UserId"] != null)
+                {
+
+                    bool isAdmin = CheckIsAdmin();
+                    if (isAdmin == true)
+                    {
+                        BindGrid();
+                    }
+                    else
+                    {
+                        int id = int.Parse(Session["UserId"].ToString());
+                        Response.Redirect(string.Format("~/RegistrationPage.aspx?UserId={0}", id));
+                        
+                    }
+                }
+                else
+                {
+                    Response.Redirect("loginpage");
+                }
+            
+
             }
         }
         private void BindGrid()
@@ -24,7 +46,7 @@ namespace RegistrationPageAsp
             dataTable.Columns.Add("FirstName");
             dataTable.Columns.Add("Email");
             dataTable.Columns.Add("Roles");
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 
                 var data = dbcontext.UserDetails.ToList();
@@ -61,7 +83,7 @@ namespace RegistrationPageAsp
         protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int Id = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Value);
-            using (var dbcontext = new RegistrationPageEntities1())
+            using (var dbcontext = new RegistrationPageEntities4())
             {
                 var UserRoles = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == Id);
                 foreach (var role in UserRoles)

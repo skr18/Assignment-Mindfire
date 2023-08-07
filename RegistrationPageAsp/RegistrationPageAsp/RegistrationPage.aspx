@@ -2,6 +2,9 @@
 
 <!DOCTYPE html>
 <%@ Register Src="~/WebUserControl1.ascx" TagPrefix="sujeet" TagName="code"  %>
+<%@ Register Src="~/WebUserControlDocuments.ascx" TagPrefix="sujeet" TagName="document"  %>
+<%@ Register Src="~/WebUserControlDocuments.ascx" TagPrefix="sujeet" TagName="WebUserControlDocuments" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     
 
@@ -14,12 +17,18 @@
 <body>
     
     <form runat="server">
-        <div class="container" id="userProfile">
+          <ul id="navbar">
+              <li><a class="active" id="home" displayid="">Home</a></li>
+              <li><a id="note">Notes</a></li>
+              <li><a id="document">Documents</a></li>
+          </ul>
+        <div class="container" id="userProfile" displayid="home">
             <br>
             <div class="heading">
                 <h1>REGISTRATION FORM</h1>
                 <div class="logo">
-                    <img src="./content/demo.jpg" id="photo" alt="">
+                    <asp:Image runat="server" ImageUrl="./content/demo.jpg" ID="photo" ClientIDMode="Static" />
+                   
                 </div>
             </div>
             <div>
@@ -54,6 +63,14 @@
                                 <span id="spanEmail">*Email requried</span>
                             </label>
                             <input id="emailinp" errorid="spanEmail" data_id="userEmail" type="email" placeholder="Enter Email"><br>
+                            <br> 
+
+                            <label for="passinp">
+                                Password:
+                                    <br>
+                                <span id="spanPass">*Password requried</span>
+                            </label>
+                            <input id="passinp" errorid="spanPass" data_id="userPassword" type="password" placeholder="Enter Password"><br>
                             <br>
                         </div>
 
@@ -82,13 +99,15 @@
                             <br>
 
                             <label for="profileimg">Profile photo:</label>
-                            <input id="profileimg" type="file" accept="image/png, image/gif, image/jpeg" name=""><br>
-                            <br>
+                            <input id="profileimg" runat="server" type="file" accept="image/png, image/gif, image/jpeg" name="" /><br />
+                            <br />
                         </div>
                     </div>
                 </div>
             </div>
             <br>
+
+
             <div>
                 <div class="box">
                     <h3 class="title">Permanent Address</h3>
@@ -261,13 +280,34 @@
                 <asp:Button runat="server" class="submit" id="submitButton" text="Submit"/>
                  <asp:Button runat="server" class="submit" id="BackButton" text="Go Back"/>
                 <br>
-            </div>
+        </div>
+    </div>
+
+
+       <div class="container hide" id="userNotes" >
+             <h1>Your Notes</h1>
               <div id="UserNotes" class="UserNotes">
                <sujeet:code  id="usercontrol" runat="server" />
+                <div id="privateCheckboxDiv" class="hide">
+                    <label for="privateMsgCheckbox">Private</label>
+                    <input type="checkbox"  name="" id="privateMsgCheckbox">
+                </div>
             </div>
+            
+       </div>
 
-        </div><br /><br />
-      
+
+       <div class="container hide" id="userDocuments">
+           <div class="userDocs">
+                  <h1>Your Documents</h1><br /><br />
+            <div>
+
+              <sujeet:document id="usercontrol2" runat="server"/><br />
+             
+            </div>
+           </div>
+           
+       </div><br /><br />
         
     </form>
 </body>

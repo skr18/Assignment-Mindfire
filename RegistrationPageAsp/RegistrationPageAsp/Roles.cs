@@ -18,7 +18,6 @@ namespace RegistrationPageAsp
         public Roles()
         {
             this.IdsOfRolesAndUsers = new HashSet<IdsOfRolesAndUsers>();
-            this.IdsOfRolesAndUsers1 = new HashSet<IdsOfRolesAndUsers>();
         }
     
         public int RoleId { get; set; }
@@ -26,7 +25,5 @@ namespace RegistrationPageAsp
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IdsOfRolesAndUsers> IdsOfRolesAndUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IdsOfRolesAndUsers> IdsOfRolesAndUsers1 { get; set; }
     }
 }

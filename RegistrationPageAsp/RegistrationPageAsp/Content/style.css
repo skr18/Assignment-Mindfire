@@ -2,25 +2,77 @@
     padding: 0px;
     margin: 0px;
 }
+body{
+    background-color:aquamarine
+}
+.privateCheckbox{
+    position:inherit;
+}
+.hide {
+    display: none;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    cursor:pointer;
+    position:sticky;
+}
+.active {
+    background-color: #04AA6D;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover:not(.active) {
+            background-color: red;
+        }
+
 
 .container {
     width: 60%;
     background-color: rgb(228 235 234);
     border-radius: 18px;
     margin: auto;
+    margin-top:15px;
+}
+#userDocuments span {
+    display: block;
+    visibility: visible;
+    color: inherit;
+    position: inherit;
+    font-size: inherit;
+}
+.userDocs {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 #UserNotes {
     display: none;
     width: 50%;
     margin: auto;
 }
-    #UserNotes span {
-        display: block;
-        visibility: visible;
-        color: inherit;
-        position: inherit;
-        font-size: inherit;
-    }
+#UserNotes span {
+    display: block;
+    visibility: visible;
+    color: inherit;
+    position: inherit;
+    font-size: inherit;
+}
 #gridview {
     text-align:center;
 }
@@ -38,14 +90,22 @@
     justify-content: center;
     align-items: center;
 }
+#userNotes h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 35px;
+    color: black;
+}
 
-    .heading h1 {
-        /* font-size: xx-large; */
-        color: #ff0097;
-        position: absolute;
-        margin: auto;
-        font-weight: 900;
-    }
+.heading h1 {
+    /* font-size: xx-large; */
+    color: #ff0097;
+    position: absolute;
+    margin: auto;
+    font-weight: 900;
+}
 
 .title {
     color: #001dff;

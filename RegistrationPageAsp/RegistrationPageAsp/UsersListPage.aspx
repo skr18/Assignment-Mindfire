@@ -46,9 +46,10 @@
                         ItemStyle-Width="60" ControlStyle-Font-Underline="false" />
                 </Columns>
             </asp:GridView><br /> <br />
-            <asp:Button ID="AddUser" runat="server" OnClick="AddUser_Click" Text="Add User" />
+            <asp:Button ID="AddUser" runat="server" OnClick="AddUser_Click" Text="Add User" /> 
 
-        </div>
+        </div><br /><br />
+
     </form>
 </body>
 </html>

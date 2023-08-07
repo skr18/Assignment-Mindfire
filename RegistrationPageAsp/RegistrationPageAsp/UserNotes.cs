@@ -17,6 +17,7 @@ namespace RegistrationPageAsp
         public int NoteId { get; set; }
         public int UserId { get; set; }
         public string Note { get; set; }
+        public Nullable<int> IsPrivate { get; set; }
     
         public virtual UserDetails UserDetails { get; set; }
     }
