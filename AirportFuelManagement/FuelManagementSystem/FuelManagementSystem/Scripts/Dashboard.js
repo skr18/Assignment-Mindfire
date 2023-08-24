@@ -189,7 +189,7 @@
         } else {
             $(node).text("");
             $("<option/>", { selected: true, disabled: true, hidden: true })
-                .text(`Choose ${text} State`)
+                .text(`${text} State`)
                 .appendTo(node);
             for (let data of datas) {
                 $("<option/>", { value: data.state_name }).text(data.state_name).appendTo(node);
@@ -666,16 +666,16 @@
         
         let datePickerTemplate = `
              <div class="flex-column">
-                <div class="flex-row mb-5" >
-                    <label class="w-70" >From</label>
-                    <input type="date" class="p-5" id="reportStartingDate" value=${startDate}>
+                <div class="flex-row marginBottom-5" >
+                    <label class="width-10" >From</label>
+                    <input type="date" class="padding-5" id="reportStartingDate" value=${startDate}>
                     
                 </div>
-                <div class="flex-row mb-5">
-                    <label class="w-70">To</label>
-                    <input type="date" id="reportEndingDate" value="${endDate}" class="mr-10 p-5">
+                <div class="flex-row marginBottom-5">
+                    <label class="width-10">To</label>
+                    <input type="date" id="reportEndingDate" value="${endDate}" class="marginRight-10 padding-5">
                     
-                    <button id="searchFuelReportBtn" class="mr-10 w-10">Find</button>
+                    <button id="searchFuelReportBtn" class="marginRight-10 width-10">Find</button>
 
                     
                 </div>
@@ -764,7 +764,7 @@
 
             let footerTemplate = `
                 <div class="fuelReportName">
-                    <div>Fuel Available:</div>
+                    <div>Fuel Available:&nbsp&nbsp</div>
                     <div>${fuelAvailable}</div>
                 </div>
                     <br/>

@@ -69,24 +69,28 @@
                 </div>
                 <div class="newItemsAddDiv">
                      <div class="newItemsAddContainer addAirportDiv">
-                        <h3 class="mt-10"><u>Add New Airport</u></h3>
-                        <div class="mt-25">
-                            <div class="flex-row mb-20">
+                        <h3 class="marginTop-10"><u>Add New Airport</u></h3>
+                        <div class="marginTop-30 width-86">
+                            <div class="flex-row marginBottom-20">
 
-                                <label class="w-37">Airport Name:</label>
-                                <asp:TextBox CssClass="w-71" runat="server" ID="airportNameInp" errorId="airportNameSpan" ClientIDMode="Static" 
-                                    placeholder="Indira Gandhi Airport, Delhi" ></asp:TextBox>
-                                 <span id="airportNameSpan">Airport Name is requried</span>
+                                <label>Airport Name:</label>
+                                <div class="flex-column">
+                                    <asp:TextBox runat="server" ID="airportNameInp" errorId="airportNameSpan" ClientIDMode="Static" 
+                                        placeholder="Indira Gandhi Airport, Delhi" ></asp:TextBox>
+                                     <span id="airportNameSpan">Airport Name is requried</span>
+                                </div>
                             </div>
 
-                            <div  class="flex-row mb-20">
-                                 <label class="w-37">Fuel Capacity:</label>
-                                 <asp:TextBox CssClass="w-71" runat="server" TextMode="Number" ID="fuelCapacityInp" 
-                                     ClientIDMode="Static" placeholder="35400 litters" errorId="AirportFuelSpan"></asp:TextBox>
-                                 <span id="AirportFuelSpan">Airport Fuel Capacity is requried</span>
+                            <div class="flex-row marginBottom-20">
+                                 <label>Fuel Capacity:</label>
+                                <div class="flex-column">
+                                     <asp:TextBox runat="server" TextMode="Number" ID="fuelCapacityInp" 
+                                         ClientIDMode="Static" placeholder="35400 litters" errorId="AirportFuelSpan"></asp:TextBox>
+                                     <span id="AirportFuelSpan">Airport Fuel Capacity is requried</span>
+                                </div>
 
                             </div>
-                            <div class="AddBtn mb-20">
+                            <div class="AddBtn marginBottom-20">
 
                                 <asp:Button runat="server" ID="addAirportBtn" ClientIDMode="Static" Text="Add"/>
                             </div>
@@ -94,44 +98,55 @@
                         </div>
                      </div>
                     <div class="newItemsAddContainer addAircraftDiv">
-                         <h3 class="mt-10" > <u>Add New Aircraft</u></h3>
+                         <h3 class="marginTop-10" > <u>Add New Aircraft</u></h3>
 
-                        <div class="w-86">
-                            <div class="flex-row mb-20 mt-15">
-                                <label class="w-37">Aircraft Name:</label>
-                                 <asp:TextBox runat="server" ID="newAircraftTextBox" ClientIDMode="Static" 
-                                    placeholder="DH647" errorId="aircraftNameSpan" ></asp:TextBox>
-                                 <span id="aircraftNameSpan">Aircraft Name is requried</span>
+                        <div class="width-86">
+                            <div class="flex-row marginBottom-20 marginTop-15">
+                                <label>Aircraft Name:</label>
+                                <div class="flex-column">
+                                     <asp:TextBox runat="server" ID="newAircraftTextBox" ClientIDMode="Static" 
+                                        placeholder="DH647" errorId="aircraftNameSpan" ></asp:TextBox>
+                                     <span id="aircraftNameSpan">Aircraft Name is requried</span>
+                                </div>
                             </div>
                             
-                            <div class="flex-row mb-20">
-                                <label class="w-37">Airline Name:</label>
-                                <select runat="server" id="airlineSelectTag">
-                                    <option selected="selected" value="Go Air">Go Air</option>
-                                    <option value="IndiGo">IndiGo</option>
-                                    <option value="Spice Jet">Spice Jet</option>
-                                    <option value="Air India">Air India</option>
-                                    <option value="kingfisher">kingfisher</option>
-                                </select>
+                            <div class="flex-row marginBottom-20">
+                                <label >Airline Name:</label>
+                               
+
+                                    <select runat="server" id="airlineSelectTag">
+                                        <option selected="selected" value="Go Air">Go Air</option>
+                                        <option value="IndiGo">IndiGo</option>
+                                        <option value="Spice Jet">Spice Jet</option>
+                                        <option value="Air India">Air India</option>
+                                        <option value="kingfisher">kingfisher</option>
+                                    </select>
+                                
                             </div>
 
-                            <div class="flex-row mb-20">
-                                 <label class="w-37">Aircrft Source:</label>
-                                <select id="sourceSelectTag" errorId="sourceSpan">
-                                    <option selected="selected" disabled="disabled" hidden="hidden" value="Choose Source State">Choose Source State</option>
-                                </select>
-                                 <span id="sourceSpan">Choose Source</span>
+                            <div class="flex-row marginBottom-20">
+                                 <label >Aircrft Source:</label>
+                                <div class="flex-column">
+
+                                    <select id="sourceSelectTag" errorId="sourceSpan">
+                                        <option selected="selected" disabled="disabled" hidden="hidden" value="Source State">Source State</option>
+                                    </select>
+                                     <span id="sourceSpan">Choose Source</span>
+                                </div>
                             </div>
 
-                            <div class="flex-row mb-20">
+                            <div class="flex-row marginBottom-20">
          
-                                 <label class="w-37">Destination:</label>
-                                 <select id="DestinationSelectTag" errorId="destinationSpan">
-                                    <option selected disabled hidden>Choose Destination</option>
-                                </select>
-                                 <span id="destinationSpan">Choose Destination State</span>
+                                 <label >Destination:</label>
+                                <div class="flex-column">
+
+                                     <select id="DestinationSelectTag" errorId="destinationSpan">
+                                        <option selected="selected" disabled="disabled" hidden="hidden">Choose Destination</option>
+                                    </select>
+                                     <span id="destinationSpan">Choose Destination State</span>
+                                </div>
                             </div>
-                            <div class="AddBtn mb-20">
+                            <div class="AddBtn marginBottom-20">
                                 <asp:Button runat="server" ID="addAircraftBtn" ClientIDMode="Static" Text="Add"/>
                             </div>
 
