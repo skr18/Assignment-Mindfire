@@ -69,13 +69,22 @@ namespace RegistrationPageAsp
         protected global::System.Web.UI.WebControls.Button BackButton;
 
         /// <summary>
-        /// usercontrol control.
+        /// txtNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationPageAsp.WebUserControl1 usercontrol;
+        protected global::System.Web.UI.WebControls.TextBox txtNote;
+
+        /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
         /// usercontrol2 control.

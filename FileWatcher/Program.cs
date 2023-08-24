@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 
 
-
+path=""
 
 namespace Mycode
 {

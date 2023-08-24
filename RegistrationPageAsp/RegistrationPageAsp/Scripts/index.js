@@ -418,6 +418,102 @@
             window.location.href = "loginpage";
         }
     });
+
+
+
+
+
+
+
+    $.ajax({
+        type: "GET",
+        url: "RegistrationPage.aspx/GetAllUserNoteData",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (responce) {
+            console.log(responce.d)
+            loadNoteData(responce.d)
+        },
+        failure: function (response) {
+            alert("failure" + response.d);
+        }
+
+    })
+
+
+    function addDataToTemplate(item) {
+
+        var template = `
+               <div class="details_notes">
+                   <div>${item.NoteId}</div>
+                    <div>${item.Note}</div>           
+                    <button id="editBtn_note">Edit</button>
+                    <button id="deleteBtn_note">Delete</button>
+               </div>
+        `;
+        return template;
+
+    }
+    function loadNoteData(data) {
+
+        for (var item of data) {
+            var template = addDataToTemplate(item)
+            $("#container_note").append(template)
+            //document.getElementById("container").appendChild(template)
+        }
+    }
+    $("#container_note button").on("click", function (e) {
+        e.preventDefault();
+        console.log(this.id);
+        var node = this
+        var parent = node.parentElement;
+        var NoteId = parent.firstElementChild.innerHTML;
+        console.log("note-id",NoteId)
+
+        if (node.id == "editBtn_note") {
+            //window.location.href = `registrationpage?UserId=${NoteId}`
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify({ Id: NoteId }),
+                url: "RegistrationPage.aspx/deleteNoteData",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                dataType: "json",
+                success: function (responce) {
+                    console.log("hurray", responce.d)
+                    location.reload();
+                },
+                failure: function (response) {
+                    alert("failure" + response.d);
+                }
+
+            })
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $("#submitButton").click(function (e)
     {
         e.preventDefault();

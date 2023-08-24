@@ -180,6 +180,7 @@
     <Content Include="Scripts\index.js" />
     <Content Include="RegistrationPage.aspx" />
     <Content Include="Scripts\UserListTabularPage.js" />
+    <Content Include="Scripts\UserNotes.js" />
     <Content Include="UserListTabularPage.aspx" />
     <Content Include="UsersListPage.aspx" />
     <Content Include="WebUserControl1.ascx" />

@@ -28,7 +28,9 @@ namespace RegistrationPageAsp
             var password = passwordInp.Text;
             bool isAdmin = false;
             int userId=0;
-            using (var dbcontext = new RegistrationPageEntities4())
+
+
+         /*   using (var dbcontext = new RegistrationPageEntities4())
             {
                 var alluser = dbcontext.UserDetails.ToList();
                 foreach(var user in alluser)
@@ -36,8 +38,6 @@ namespace RegistrationPageAsp
                     if(user.FirstName == name && user.Password==password)
                     {
                         userId = user.UserId;
-                        /*HttpCookie userInfo = new HttpCookie("userInfo");
-                        userInfo["UserId"] = userId.ToString();*/
                         
                         var roleIds = dbcontext.IdsOfRolesAndUsers.Where(i => i.UserId == userId).Select(i => i.RoleId);
                         foreach(var role in roleIds)
@@ -46,21 +46,19 @@ namespace RegistrationPageAsp
                             if(rolename == "Admin")
                             {
                                 isAdmin= true;
-                               // userInfo["IsAdmin"] = "true";
-                               // Response.Cookies.Add(userInfo);
+                               
                             }
                         }
                         Session["UserId"] = userId;
                         if (isAdmin == true)
                         {
-                            //Response.Redirect(string.Format("~/RegistrationPage.aspx?UserId={0}", userId));
+                            
                             Response.Redirect("userslistpage");
                             
                         }
                         else
                         {
-                            //userInfo["IsAdmin"] = "false";
-                           // Response.Cookies.Add(userInfo);
+                            
                             Response.Redirect(string.Format("~/RegistrationPage.aspx?UserId={0}" , userId));
                         }
 
@@ -70,9 +68,9 @@ namespace RegistrationPageAsp
                         ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('UserName Or PassWord Invalid')", true);
 
                     }
-                }
+                }*/
                
-            }
+            
 
         }
 

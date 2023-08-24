@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirportFuelManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="AirportFuelManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Aircraft" EntityType="AirportFuelManagementSystemModel.Aircraft" />
+    <EntitySet Name="Airport" EntityType="AirportFuelManagementSystemModel.Airport" />
+    <EntitySet Name="FuelTransaction" EntityType="AirportFuelManagementSystemModel.FuelTransaction" />
+    <AssociationSet Name="FK_Aircraft" Association="AirportFuelManagementSystemModel.FK_Aircraft">
+      <End Role="Aircraft" EntitySet="Aircraft" />
+      <End Role="FuelTransaction" EntitySet="FuelTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Airport" Association="AirportFuelManagementSystemModel.FK_Airport">
+      <End Role="Airport" EntitySet="Airport" />
+      <End Role="FuelTransaction" EntitySet="FuelTransaction" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Aircraft">
+    <Key>
+      <PropertyRef Name="aircraftId" />
+    </Key>
+    <Property Name="aircraftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aircraftNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="airline" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="source" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="destination" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FuelTransaction" Relationship="AirportFuelManagementSystemModel.FK_Aircraft" FromRole="Aircraft" ToRole="FuelTransaction" />
+  </EntityType>
+  <EntityType Name="Airport">
+    <Key>
+      <PropertyRef Name="airportId" />
+    </Key>
+    <Property Name="airportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="airportName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fuelCapacity" Type="Int32" Nullable="false" />
+    <Property Name="fuelAvailability" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FuelTransaction" Relationship="AirportFuelManagementSystemModel.FK_Airport" FromRole="Airport" ToRole="FuelTransaction" />
+  </EntityType>
+  <EntityType Name="FuelTransaction">
+    <Key>
+      <PropertyRef Name="transactionId" />
+    </Key>
+    <Property Name="transactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transactionDataTime" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="transactionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="airportId" Type="Int32" Nullable="false" />
+    <Property Name="aircraftId" Type="Int32" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="transactionIdParent" Type="Int32" />
+    <NavigationProperty Name="Aircraft" Relationship="AirportFuelManagementSystemModel.FK_Aircraft" FromRole="FuelTransaction" ToRole="Aircraft" />
+    <NavigationProperty Name="Airport" Relationship="AirportFuelManagementSystemModel.FK_Airport" FromRole="FuelTransaction" ToRole="Airport" />
+  </EntityType>
+  <Association Name="FK_Aircraft">
+    <End Type="AirportFuelManagementSystemModel.Aircraft" Role="Aircraft" Multiplicity="0..1" />
+    <End Type="AirportFuelManagementSystemModel.FuelTransaction" Role="FuelTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aircraft">
+        <PropertyRef Name="aircraftId" />
+      </Principal>
+      <Dependent Role="FuelTransaction">
+        <PropertyRef Name="aircraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Airport">
+    <End Type="AirportFuelManagementSystemModel.Airport" Role="Airport" Multiplicity="1" />
+    <End Type="AirportFuelManagementSystemModel.FuelTransaction" Role="FuelTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airport">
+        <PropertyRef Name="airportId" />
+      </Principal>
+      <Dependent Role="FuelTransaction">
+        <PropertyRef Name="airportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

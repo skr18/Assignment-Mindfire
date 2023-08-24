@@ -32,14 +32,14 @@ namespace RegistrationPageAsp
                 if (Request.QueryString["UserId"] != null)
                 {
                     objId = int.Parse(Request.QueryString["UserId"]);
-                    BindGrid();
+                    //BindGrid();
                 }
             }
            
         }
 
 
-        private void BindGrid()
+/*        private void BindGrid()
         {
             using (var dbcontext = new RegistrationPageEntities4())
             {
@@ -103,7 +103,7 @@ namespace RegistrationPageAsp
                 dbcontext.SaveChanges();
             }
             this.BindGrid();
-        }
+        }*/
 
        
         public void Insert(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace RegistrationPageAsp
             }
             txtNote.Text = "";
 
-            BindGrid();
+           // BindGrid();
         }
     }
 }

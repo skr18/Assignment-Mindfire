@@ -1,0 +1,871 @@
+﻿* {
+    padding: 0px;
+    margin: 0px;
+}
+button{
+    cursor:pointer;
+}
+select{
+    cursor:pointer;
+}
+input{
+    cursor:pointer;
+}
+body, html {
+    height: 100%;
+}
+
+
+body {
+    background-image: url("./dashboardBackgroundImage.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Merriweather', serif;
+}
+
+/*NavBar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    cursor: pointer;
+    position: sticky;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #04AA6D;
+    border-inline:1px solid black;
+}
+
+
+#logout {
+    position: absolute;
+    right: 10px;
+    font-size: larger;
+    color: aquamarine;
+}
+#initialize {
+    position: absolute;
+    right: 85px;
+}
+#initializeBtn {
+    position: absolute;
+    right: 10px;
+    font-size: larger;
+    color: aquamarine;
+}
+
+
+/*Differnet Pages*/
+#container {
+    display: block;
+    height: 85vh;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+#transactionContainer {
+    display: none;
+    background: rgb(164 166 173 / 15%);
+    width: 60%;
+    margin: auto;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+
+
+#reportContainer {
+    display: none;
+}
+
+
+
+/*Main content*/
+.travelName {
+    margin-top: 12px;
+    text-align: center;
+    color: white;
+    font-size: x-large;
+}
+
+
+/*Loading screen*/
+#loading {
+    background: url("loadingGif.gif") no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+    display: none;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+span{
+    display:none;
+    color:red;
+}
+
+
+/*Airport*/
+
+
+.addAirportDiv span{
+    display:none;
+    color:red;
+}
+.airportContainer {
+    width: 65%;
+    margin: auto;
+}
+
+
+.flightDetailsContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin-left: 5%;
+    /* margin: auto; */
+    background: rgb(164 166 173 / 15%);
+}
+.aircraftNullMessage{
+    font-size:9px;
+    width:100%;
+    margin-left:2%;
+    padding:10px;
+}
+.airportNameDiv {
+    margin-top: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#airportName {
+    background-color: #082756;
+    color: white;
+    margin-right: 19px;
+    display: block;
+    width: 64%;
+    text-align: center;
+    height: auto;
+    font-size: 120%;
+    padding: 15px;
+    border-radius: 25px;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+
+.airportNameDiv select {
+    width: 66%;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+    font-size: small;
+}
+
+/*Aircraft */
+
+
+.aircraftContainer {
+    width: 65%;
+    margin-top: 10px;
+}
+#aircraftDiv {
+    margin: auto;
+    width: 99%;
+}
+#aircraftDiv .table-header-cell  {
+    text-align:center
+}
+#aircraftDiv .table-body-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+.airlinrLogo {
+    width: 80px;
+    height: 45px;
+    mix-blend-mode: darken;
+    object-fit: revert;
+}
+
+
+
+
+/*Adding New Airport and Aircraft */
+
+
+.newItemsAddDiv {
+    width: 68%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:20px;
+}
+.newItemsAddContainer {
+    background: #e7e7e7;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 45%;
+    height: 40vh;
+    margin-bottom: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: small;
+    border-radius:12px;
+}
+
+.newItemsAddContainer span {
+    position: absolute;
+    margin-top: 1.7%;
+    margin-left: 8%;
+}
+   
+.addAirportDiv {
+}
+.addAircraftDiv span {
+    margin-left: 8.7%;
+}
+
+.addNewDataBtn {
+    width: 80%;
+    height: 30%;
+    background-color: #81e71f;
+}
+
+#addAirportBtn {
+    width: 26%;
+    height: 110%;
+    color: white;
+    background-color: black;
+    border: 0px;
+}
+
+#addAircraftBtn {
+    width: 25%;
+    height: 58%;
+    background-color: black;
+    color: white;
+    border: 0px;
+}
+
+
+
+    /*Report Page*/
+
+    #startDateUserHandle {
+        display: none;
+    }
+
+    #endDateUserHandle {
+        display: none;
+    }
+
+    #reportContainer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        /* background: rgb(74 77 86 / 45%);*/
+        background: rgb(164 166 173 / 15%);
+        margin: auto;
+        font-family: 'Merriweather', serif;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    .reportHeading {
+        width: 100%;
+    }
+
+    .reportHeadingTitle {
+        margin-top: 10px;
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .reportContainer {
+        width: 100%;
+        height: 60vh;
+        overflow: auto;
+    }
+
+    .reportContent {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: #d3d3d3;
+    }
+
+    .reportTitle {
+    }
+
+    .activeReport {
+        background-color: brown
+    }
+
+    .reportHeading ul {
+        width: 100%
+    }
+
+    .reportHeading li {
+        width: 50%
+    }
+
+    .displayFlex {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .contentColoumName {
+    }
+
+    .content {
+        width: 80%;
+        margin-left: 5%;
+        margin-bottom: 15px;
+    }
+
+
+    .fuelReportName {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    #summaryReportImageButton {
+        width: 60px;
+        height: 60px;
+        float: right;
+        mix-blend-mode: color-burn;
+    }
+
+    #fuelReportImageButton {
+        width: 60px;
+        height: 60px;
+        float: right;
+        display: none;
+        mix-blend-mode: color-burn;
+    }
+
+    #searchFuelReportBtn {
+        width: 16%;
+        background-color: black;
+        color: white;
+        border: 0px;
+        font-size: 17px;
+    }
+
+    /*Footer Image*/
+    .footerImage {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+    }
+
+    #footerImg {
+        aspect-ratio: auto;
+        width: 100%;
+        height: 33vh;
+    }
+
+
+    /*Common class */
+
+    .mt-25 {
+        margin-top: 30px;
+        width: 80%;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+
+    .w-37 {
+        width: 39%
+    }
+
+    .w-10 {
+        width: 10%;
+    }
+
+    .w-86 {
+        width: 86%;
+    }
+
+    .w-70 {
+        width: 70px;
+        font-size: larger;
+    }
+
+    .newItemsAddDiv input {
+        width: 65%;
+        padding: 2px;
+    }
+
+    .newItemsAddDiv select {
+        width: 65%;
+    }
+
+
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .mt-15 {
+        margin-top: 15px;
+    }
+
+    .AddBtn {
+        height: 22%;
+    }
+
+    .p-10 {
+        padding: 10px;
+    }
+
+    .p-5 {
+        padding: 5px;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+
+    .mb-5 {
+        margin-bottom: 5px;
+    }
+
+    .mr-10 {
+        margin-right: 10px;
+    }
+
+
+
+    /*Table*/
+    #resp-table {
+        width: 100%;
+        margin-top: 10px;
+        display: table;
+        background-color: #e7e7e7;
+    }
+
+    #resp-table-header {
+        display: table-header-group;
+        background-color: #8b8b8b;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .table-header-cell {
+        display: table-cell;
+        text-align: justify;
+        /*text-align: center;*/
+        padding-left: 2%;
+        border-bottom: 1px solid black;
+    }
+
+    #resp-table-body {
+        display: table-row-group;
+    }
+
+    .table-body-cell {
+        display: table-cell;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 2%;
+        /*text-align: center;*/
+    }
+
+    .resp-table-row {
+        display: table-row;
+    }
+
+
+
+    /*Transaction*/
+
+    #TransactionInOutAircraftDiv {
+        display: none;
+    }
+
+    .transactionTitle {
+        color: white;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .trasactionDiv {
+        width: 60%;
+        background-color: #e7e7e7;
+        margin: auto;
+        margin-top: 15px;
+    }
+
+        .trasactionDiv span {
+            position: absolute;
+            margin-top: 3%;
+            margin-left: 14%;
+            font-size: 12px;
+        }
+
+        .trasactionDiv label {
+            width: 48%
+        }
+
+        .trasactionDiv select {
+            width: 70%;
+            padding: 3px;
+        }
+
+        .trasactionDiv input {
+            width: 70%;
+            padding: 3px;
+        }
+
+    .trasactionControls {
+        display: flex;
+        padding: 10px;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+
+    #TransactionAircraftSelectTag {
+        width: 106%;
+        padding: 3px;
+    }
+
+    #oilTransactionBtn {
+        width: auto;
+        height: 5vh;
+        color: white;
+        background-color: black;
+        border: 0px;
+        padding: 3px;
+        font-size: medium;
+    }
+
+    #transactionAircraftSpan {
+        margin-left: 0%;
+    }
+
+
+
+
+    /*  Modal */
+
+
+    .userModal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 170px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .userModal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 35%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    .userModal-header {
+        padding: 2px 16px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .userModalClose {
+        float: right;
+        font-size: larger;
+        height: 22px;
+        width: 25px;
+    }
+
+    .userModal-body {
+        padding: 23px 16px;
+    }
+
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 170px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 35%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #c5c5c5;
+        color: black;
+    }
+
+    .modal-body {
+        padding: 16px 16px;
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        /*  background-color: #5cb85c;
+    color: white;*/
+        padding-bottom: 10px;
+    }
+
+
+.modal-footer input {
+    width: 10%;
+    height: 22px;
+    margin-right: 10px;
+}
+
+.modal-footer input:hover {
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+    #modalConfirmBtn {
+        background-color: #000000;
+        color: white;
+        border: none;
+    }
+
+        #modalConfirmBtn:hover {
+            background-color: gainsboro;
+        }
+
+    #modalCancelBtn:hover {
+        background-color: gainsboro;
+    }
+
+    #modalCancelBtn {
+        background-color: red;
+    }
+
+
+
+@media screen and (max-width:868px) {
+
+
+    /*NavBar*/
+
+
+    ul {
+        font-size: x-small;
+    }
+
+    #logout {
+        right: 0px;
+    }
+
+    #initialize {
+        right: 40px;
+    }
+
+
+    /*Dashboard*/
+
+    .travelName {
+        font-size: 18px;
+    }
+
+    #container {
+        height: 75vh;
+    }
+
+    .flightDetailsContainer {
+        width: 90%;
+    }
+
+    .airportContainer {
+        width: 85%;
+    }
+
+    .airportNameDiv {
+        flex-direction: column;
+    }
+
+    #airportName {
+        margin-bottom: 10px;
+        width: 96%;
+        font-size: 100%;
+        margin-right: 0px;
+        border-radius: 18px;
+    }
+
+    #AllAirportSelectTag {
+        width: 75%;
+        font-size: x-small;
+    }
+
+    #container input {
+    }
+
+    #container label {
+    }
+
+    .aircraftContainer {
+        width: 90%;
+    }
+
+    #resp-table-header {
+        font-size: 13px;
+    }
+
+    .table-body-cell {
+        font-size: small;
+    }
+
+    .airlinrLogo {
+        width: 50px;
+        height: 35px;
+        mix-blend-mode: darken;
+        object-fit: revert;
+    }
+
+    .newItemsAddDiv {
+        flex-direction: column;
+        width: 85%;
+    }
+
+    .newItemsAddContainer {
+        width: 100%;
+    }
+
+        .newItemsAddContainer span {
+            display: none !important;
+        }
+
+
+
+    /*Transaction Page*/
+
+    #transactionContainer {
+        width: 90%;
+    }
+
+    .trasactionDiv {
+        width: 100%;
+    }
+
+    .trasactionDiv span {
+        margin-top: 14%;
+        margin-left: 33%;
+    }
+
+    #transactionAircraftSpan {
+        margin-top: 3%;
+    }
+    #AirportTransactionSelectTag{
+        font-size:small;
+    }
+    /*Reports*/
+    #reportContainer {
+        width: 95%;
+        font-size:small;
+    }
+
+    #summaryReportImageButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    .content {
+        width: 77%;
+    }
+}

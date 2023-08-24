@@ -1,0 +1,513 @@
+﻿#container_note {
+    width: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #e3e3e3;
+}
+
+.heading_note {
+    display: flex;
+    flex-direction: row;
+    background-color: #b8b9b8;
+    font-size: larger;
+    font-weight: 800;
+    margin-bottom: 2px;
+    width: 80%;
+}
+
+    .heading_note div {
+        width: 153px;
+    }
+
+.details_notes {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-right:23px;
+}
+    
+
+    .details_notes div {
+        width: 155px;
+    }
+    .details_notes:hover button {
+        visibility: visible;
+    }
+    .details_notes button {
+        width: 55px;
+        margin-right: 15px;
+        height: 25px;
+        visibility:hidden
+    }
+
+#editBtn_note {
+    background-color: blue;
+    color: white;
+    margin-left:25px;
+}
+
+#deleteBtn_note {
+    background-color: red;
+}
+
+
+.display_note {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* Docs */
+.docBtnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 30px;
+}
+#fileUploadBtn {
+    background-color: aquamarine;
+    width: 65px;
+    height: 30px;
+}
+
+
+
+.details_doc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 35px;
+}
+.userDocs h1 {
+    background-color: #197c5c;
+    color: white;
+    width: 40%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+.details_doc button {
+    border: none;
+    mix-blend-mode: darken;
+    cursor: pointer;
+}
+
+fileUploadBtn {
+    background-color: aquamarine;
+    height: 30px;
+    width: 70px;
+}
+
+
+
+
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color:aquamarine
+}
+.privateCheckboxDiv {
+    margin-left: 15px;
+}
+.hide {
+    display: none;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    cursor: pointer;
+    position: sticky;
+}
+.active {
+    background-color: #04AA6D;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover:not(.active) {
+            background-color: red;
+        }
+#logout {
+    position: absolute;
+    right: 10px;
+    font-size: larger;
+    color: aquamarine;
+}
+
+.container {
+    width: 60%;
+    background-color: rgb(228 235 234);
+    border-radius: 18px;
+    margin: auto;
+    margin-top: 15px;
+}
+#userDocuments span {
+    display: block;
+    visibility: visible;
+    color: inherit;
+    position: inherit;
+    font-size: inherit;
+}
+.userDocs {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+#UserNotes {
+    display: none;
+    width: 100%;
+    margin: auto;
+}
+#UserNotes span {
+    display: block;
+    visibility: visible;
+    color: inherit;
+    position: inherit;
+    font-size: inherit;
+}
+#gridview {
+    text-align:center;
+}
+#btnAdd {
+    width: 65px;
+    border-radius: 10px;
+    color: white;
+    background-color: #60b111;
+    height: 25px;
+    margin-left: 20px;
+    margin-bottom: 7px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#userNotes h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 35px;
+    background-color: #197c5c;
+    color: white;
+    width: 38%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.heading h1 {
+    /*  color: #ff0097;
+    position: absolute;
+    margin: auto;
+    font-weight: 900;*/
+    /* font-size: xx-large; */
+    color: #ff0097;
+    position: absolute;
+    margin: auto;
+    font-weight: 900;
+    background-color: #197c5c;
+    color: white;
+    width: 30%;
+    margin-bottom: 30px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.title {
+    color: #001dff;
+    text-align: center;
+}
+
+#dobinp {
+    width: 35%;
+}
+
+#genderinp {
+    float: left;
+    width: 35%;
+}
+
+#photo {
+    width: 85px;
+    height: 85px;
+    border-radius: 56px;
+    border: 1px solid;
+}
+
+.p-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.container span {
+    position: absolute;
+    color: red;
+    font-size: smaller;
+    visibility: hidden;
+}
+
+.col1 {
+    margin-left: 10px;
+    width: 50%;
+}
+
+    .col1 label {
+        float: left;
+        width: 27%;
+    }
+
+    .col1 input {
+        float: left;
+        width: 47%;
+    }
+
+    .col1 select {
+        float: left;
+        width: 55%;
+    }
+
+.box {
+    border: 1px solid grey;
+    width: 97%;
+    margin: auto;
+    border-radius: 35px;
+    border: none;
+    background-color: #cfdcdd;
+}
+
+    .box label {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .box select {
+        float: left;
+    }
+
+.submit {
+    border-radius: 8px;
+    font-size: medium;
+    color: white;
+    background-color: #85205e;
+    width: 100px;
+    height: 30px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.noborder {
+    border: none;
+}
+
+.lableCheckbox {
+    color: #5e5838;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.permanentTitle {
+    display: flex;
+    align-items: center
+}
+
+.logo {
+    position: relative;
+    margin-left: auto;
+    margin-right: 6px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.userContainer {
+    margin-top: 20px !important;
+    background-color: rgb(192 214 219);
+    margin: auto;
+    width: 60%;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+    .userContainer h1 {
+        color: #045643;
+        text-align: center;
+        font-weight: 900;
+    }
+
+.userData {
+    display: flex;
+    flex-direction: row;
+}
+
+#hobby {
+    text-decoration: none;
+    border: none;
+    background-color: rgb(228 235 234);
+    border-bottom: 2px solid black;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.hobbies {
+    flex-direction: column;
+    display: none;
+    background-color: rgb(228 235 234);
+    width: 120px;
+}
+
+.hobbiesVisible {
+    flex-direction: column;
+    display: flex;
+    background-color: rgb(228 235 234);
+    width: 120px;
+}
+
+.lastSection {
+    margin-left: 25px;
+    margin-bottom:10px;
+}
+
+@media(max-width:868px) {
+    .container span {
+        font-size: xx-small;
+    }
+
+    .logo {
+        position: relative;
+        margin-left: auto;
+    }
+
+    #photo {
+        width: 35px;
+    }
+
+    .heading h1 {
+        color: #ff0097;
+        position: absolute;
+        margin: auto;
+        font-size: x-large;
+        margin-right: 4px;
+    }
+
+    .p-details {
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .col1 {
+        margin-left: 10px;
+        width: 85%;
+    }
+
+        .col1 label {
+            float: left;
+            width: 35%;
+        }
+
+        .col1 input {
+            float: left;
+            width: 60%;
+        }
+
+    .container {
+        width: 96%;
+    }
+
+    .lableCheckbox {
+        font-size: small;
+    }
+
+    .userData {
+        flex-direction: column;
+    }
+
+    .userContainer {
+        width: 80%;
+    }
+
+    .userData label {
+        width: 45%;
+    }
+}
+
+@media (max-width: 1164px) and (min-width: 869px) {
+    .container span {
+        font-size: x-small;
+    }
+
+    .logo {
+        position: relative;
+        margin-left: auto;
+        font-size: 30px
+    }
+
+    .heading h1 {
+        color: #ff0097;
+        position: absolute;
+        margin: auto;
+        font-size: xx-large;
+    }
+
+    .p-details {
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .box {
+        border: 1px solid grey;
+        width: 80%;
+        margin: auto;
+        border-radius: 12px;
+    }
+
+    .col1 {
+        margin-left: 10px;
+        width: 80%
+    }
+
+        .col1 input {
+            float: left;
+            width: 61%;
+        }
+
+    .lableCheckbox {
+        font-size: medium;
+    }
+}

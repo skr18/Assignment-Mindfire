@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da75e7634fa642e7bdaaeed8ab3c4087" Name="Diagram1">
+        <EntityTypeShape EntityType="AirportFuelManagementSystemModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportFuelManagementSystemModel.Aircraft" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AirportFuelManagementSystemModel.Airport" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AirportFuelManagementSystemModel.FuelTransaction" Width="1.5" PointX="6" PointY="2" />
+        <AssociationConnector Association="AirportFuelManagementSystemModel.FK_Aircraft" />
+        <AssociationConnector Association="AirportFuelManagementSystemModel.FK_Airport" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

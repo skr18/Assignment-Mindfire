@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AirportFuelManagementSystemModelStoreContainer" CdmEntityContainer="AirportFuelManagementSystemEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="AirportFuelManagementSystemModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Aircraft">
+      <EntityTypeMapping TypeName="AirportFuelManagementSystemModel.Aircraft">
+        <MappingFragment StoreEntitySet="Aircraft">
+          <ScalarProperty Name="destination" ColumnName="destination" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="airline" ColumnName="airline" />
+          <ScalarProperty Name="aircraftNo" ColumnName="aircraftNo" />
+          <ScalarProperty Name="aircraftId" ColumnName="aircraftId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Airport">
+      <EntityTypeMapping TypeName="AirportFuelManagementSystemModel.Airport">
+        <MappingFragment StoreEntitySet="Airport">
+          <ScalarProperty Name="fuelAvailability" ColumnName="fuelAvailability" />
+          <ScalarProperty Name="fuelCapacity" ColumnName="fuelCapacity" />
+          <ScalarProperty Name="airportName" ColumnName="airportName" />
+          <ScalarProperty Name="airportId" ColumnName="airportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FuelTransaction">
+      <EntityTypeMapping TypeName="AirportFuelManagementSystemModel.FuelTransaction">
+        <MappingFragment StoreEntitySet="FuelTransaction">
+          <ScalarProperty Name="transactionIdParent" ColumnName="transactionIdParent" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="aircraftId" ColumnName="aircraftId" />
+          <ScalarProperty Name="airportId" ColumnName="airportId" />
+          <ScalarProperty Name="transactionType" ColumnName="transactionType" />
+          <ScalarProperty Name="transactionDataTime" ColumnName="transactionDataTime" />
+          <ScalarProperty Name="transactionId" ColumnName="transactionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

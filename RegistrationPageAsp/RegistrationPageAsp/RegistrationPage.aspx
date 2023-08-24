@@ -27,7 +27,7 @@
             <div class="heading">
                 <h1>REGISTRATION FORM</h1>
                 <div class="logo">
-                    <asp:Image runat="server" ImageUrl="./content/demo.jpg" ID="photo" ClientIDMode="Static" />
+                    <asp:Image runat="server" ImageUrl="" ID="photo" ClientIDMode="Static" />
                    
                 </div>
             </div>
@@ -287,14 +287,32 @@
        <div class="container hide" id="userNotes" >
              <h1>Your Notes</h1>
               <div id="UserNotes" class="UserNotes">
-               <sujeet:code  id="usercontrol" runat="server" />
+                <div class="display_note">
+                    <div id="container_note">
+                        <div class="heading_note">
+                            <div>NoteId</div>
+                            <div>Note</div>
+                        </div>
+                    </div><br /><br />
+                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-top:10px; " >
+                    <tr>
+                        <td style="width: 200px">
+                            <asp:TextBox ID="txtNote" runat="server" Width="170" placeholder="Enter Your Note" />
+                        </td>
+                        <td style="width: 100px">
+                            <asp:Button ClientIDMode="Static" ID="btnAdd" runat="server" Text="Add" OnClick="Insert"/>
+                        </td>
+                   </tr>
+              </table>
+                </div><br /><br />
+                   
                 <div id="privateCheckboxDiv" class="hide">
                     <label for="privateMsgCheckbox">Private</label>
                     <input type="checkbox"  name="" id="privateMsgCheckbox">
                 </div>
             </div>
             
-       </div>
+       </div><br /><br />
 
 
        <div class="container hide" id="userDocuments">

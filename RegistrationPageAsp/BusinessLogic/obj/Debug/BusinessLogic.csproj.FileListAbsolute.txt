@@ -1,0 +1,14 @@
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\BusinessLogic.dll
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\BusinessLogic.pdb
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\Model.dll
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\EntityFramework.dll
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\Model.pdb
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\Model.dll.config
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\EntityFramework.xml
+E:\Assignments\RegistrationPageAsp\BusinessLogic\obj\Debug\BusinessLogic.csproj.AssemblyReference.cache
+E:\Assignments\RegistrationPageAsp\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+E:\Assignments\RegistrationPageAsp\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+E:\Assignments\RegistrationPageAsp\BusinessLogic\obj\Debug\BusinessLogic.dll
+E:\Assignments\RegistrationPageAsp\BusinessLogic\obj\Debug\BusinessLogic.pdb
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\utils.dll
+E:\Assignments\RegistrationPageAsp\BusinessLogic\bin\Debug\utils.pdb

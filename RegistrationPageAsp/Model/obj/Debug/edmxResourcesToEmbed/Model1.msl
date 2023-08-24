@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RegistrationPageModelStoreContainer" CdmEntityContainer="RegistrationPageEntities1">
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="RegistrationPageModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IdsOfRolesAndUsers">
+      <EntityTypeMapping TypeName="RegistrationPageModel.IdsOfRolesAndUsers">
+        <MappingFragment StoreEntitySet="IdsOfRolesAndUsers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Not_requried" ColumnName="Not requried" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RegistrationPageModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="RegistrationPageModel.States">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="RegistrationPageModel.UserDetails">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PermanentAddressLine1" ColumnName="PermanentAddressLine1" />
+          <ScalarProperty Name="PermanentAddressLine2" ColumnName="PermanentAddressLine2" />
+          <ScalarProperty Name="PermanentPostalCode" ColumnName="PermanentPostalCode" />
+          <ScalarProperty Name="PermanentCountryId" ColumnName="PermanentCountryId" />
+          <ScalarProperty Name="PermanentStateId" ColumnName="PermanentStateId" />
+          <ScalarProperty Name="PermanentCity" ColumnName="PermanentCity" />
+          <ScalarProperty Name="PresentAddressLine1" ColumnName="PresentAddressLine1" />
+          <ScalarProperty Name="PresentAddressLine2" ColumnName="PresentAddressLine2" />
+          <ScalarProperty Name="PresentPostalCode" ColumnName="PresentPostalCode" />
+          <ScalarProperty Name="PresentCountryId" ColumnName="PresentCountryId" />
+          <ScalarProperty Name="PresentStateId" ColumnName="PresentStateId" />
+          <ScalarProperty Name="PresentCity" ColumnName="PresentCity" />
+          <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNotes">
+      <EntityTypeMapping TypeName="RegistrationPageModel.UserNotes">
+        <MappingFragment StoreEntitySet="UserNotes">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RegistrationPageModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersDocuments">
+      <EntityTypeMapping TypeName="RegistrationPageModel.UsersDocuments">
+        <MappingFragment StoreEntitySet="UsersDocuments">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="UniqueGuid" ColumnName="UniqueGuid" />
+          <ScalarProperty Name="DocumentUrl" ColumnName="DocumentUrl" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

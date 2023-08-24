@@ -1,0 +1,34 @@
+﻿body {
+    background-color: #d9d9d9;
+    background-image: url("https://t4.ftcdn.net/jpg/04/60/71/01/360_F_460710131_YkD6NsivdyYsHupNvO3Y8MPEwxTAhORh.jpg")
+}
+.container {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    background-color: #0c6256;
+    flex-direction: column;
+    height: 300px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    color: white;
+}
+}
+.container h1{
+   margin-bottom:45px;
+}
+
+.btn {
+    border-radius: 8px;
+    font-size: medium;
+    color: white;
+    background-color: #85205e;
+    width: 100px;
+    height: 30px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+

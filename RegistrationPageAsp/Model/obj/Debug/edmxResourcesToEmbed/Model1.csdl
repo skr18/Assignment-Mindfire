@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationPageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="States" Relationship="Self.FK_States_Country" FromRole="Country" ToRole="States" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetails_Country" FromRole="Country" ToRole="UserDetails" />
+    <NavigationProperty Name="UserDetails1" Relationship="Self.FK_UserDetails_Country1" FromRole="Country" ToRole="UserDetails" />
+  </EntityType>
+  <EntityType Name="IdsOfRolesAndUsers">
+    <Key>
+      <PropertyRef Name="Not_requried" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Not_requried" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="IdsOfRolesAndUsers" ToRole="UserDetails" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="IdsOfRolesAndUsers" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__RoleI__59FA5E80" FromRole="Roles" ToRole="IdsOfRolesAndUsers" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_States_Country" FromRole="States" ToRole="Country" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetails_States" FromRole="States" ToRole="UserDetails" />
+    <NavigationProperty Name="UserDetails1" Relationship="Self.FK_UserDetails_States1" FromRole="States" ToRole="UserDetails" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Dob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentAddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentAddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PermanentCountryId" Type="Int32" Nullable="false" />
+    <Property Name="PermanentStateId" Type="Int32" Nullable="false" />
+    <Property Name="PermanentCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PresentAddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PresentAddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PresentPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PresentCountryId" Type="Int32" Nullable="false" />
+    <Property Name="PresentStateId" Type="Int32" Nullable="false" />
+    <Property Name="PresentCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subscribed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_UserDetails_Country" FromRole="UserDetails" ToRole="Country" />
+    <NavigationProperty Name="Country1" Relationship="Self.FK_UserDetails_Country1" FromRole="UserDetails" ToRole="Country" />
+    <NavigationProperty Name="IdsOfRolesAndUsers" Relationship="Self.FK__IdsOfRole__RoleI__412EB0B6" FromRole="UserDetails" ToRole="IdsOfRolesAndUsers" />
+    <NavigationProperty Name="States" Relationship="Self.FK_UserDetails_States" FromRole="UserDetails" ToRole="States" />
+    <NavigationProperty Name="States1" Relationship="Self.FK_UserDetails_States1" FromRole="UserDetails" ToRole="States" />
+    <NavigationProperty Name="UserNotes" Relationship="Self.FK_UserNotes_UserDetails" FromRole="UserDetails" ToRole="UserNotes" />
+  </EntityType>
+  <EntityType Name="UserNotes">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IsPrivate" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserNotes_UserDetails" FromRole="UserNotes" ToRole="UserDetails" />
+    <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_States_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="States" Type="Self.States" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="PermanentCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_Country1">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="PermanentCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IdsOfRole__RoleI__412EB0B6">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="IdsOfRolesAndUsers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IdsOfRole__RoleI__59FA5E80">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="IdsOfRolesAndUsers" Type="Self.IdsOfRolesAndUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="IdsOfRolesAndUsers">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_States">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="PresentStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_States1">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="PermanentStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserNotes_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+    <End Role="UserNotes" Type="Self.UserNotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserNotes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RegistrationPageEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="IdsOfRolesAndUsers" EntityType="Self.IdsOfRolesAndUsers" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="States" EntityType="Self.States" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" />
+    <EntitySet Name="UserNotes" EntityType="Self.UserNotes" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_States_Country" Association="Self.FK_States_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_Country" Association="Self.FK_UserDetails_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_Country1" Association="Self.FK_UserDetails_Country1">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IdsOfRole__RoleI__412EB0B6" Association="Self.FK__IdsOfRole__RoleI__412EB0B6">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IdsOfRole__RoleI__59FA5E80" Association="Self.FK__IdsOfRole__RoleI__59FA5E80">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="IdsOfRolesAndUsers" EntitySet="IdsOfRolesAndUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_States" Association="Self.FK_UserDetails_States">
+      <End Role="States" EntitySet="States" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_States1" Association="Self.FK_UserDetails_States1">
+      <End Role="States" EntitySet="States" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserNotes_UserDetails" Association="Self.FK_UserNotes_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="UserNotes" EntitySet="UserNotes" />
+    </AssociationSet>
+    <EntitySet Name="UsersDocuments" EntityType="RegistrationPageModel.UsersDocuments" />
+  </EntityContainer>
+  <EntityType Name="UsersDocuments">
+    <Key>
+      <PropertyRef Name="DocumentID" />
+    </Key>
+    <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="DocumentUrl" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UniqueGuid" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

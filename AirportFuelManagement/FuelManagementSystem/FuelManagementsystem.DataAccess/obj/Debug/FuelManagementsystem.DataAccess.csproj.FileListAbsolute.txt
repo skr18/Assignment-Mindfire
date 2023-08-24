@@ -1,0 +1,14 @@
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\FuelManagementsystem.DataAccess.dll.config
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\FuelManagementsystem.DataAccess.dll
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\FuelManagementsystem.DataAccess.pdb
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\EntityFramework.dll
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\FuelManagementSystem.utils.dll
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\FuelManagementSystem.utils.pdb
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\EntityFramework.xml
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\obj\Debug\FuelManagementsystem.DataAccess.csproj.AssemblyReference.cache
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\obj\Debug\FuelManagementsystem.DataAccess.csproj.CoreCompileInputs.cache
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\obj\Debug\FuelManagementsystem.DataAccess.csproj.CopyComplete
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\obj\Debug\FuelManagementsystem.DataAccess.dll
+E:\Assignments\AirportFuelManagement\FuelManagementSystem\FuelManagementsystem.DataAccess\obj\Debug\FuelManagementsystem.DataAccess.pdb

@@ -1,0 +1,66 @@
+﻿body {
+    background-color: #d9d9d9;
+    background-image: url("LoginPageBackgroundImage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#heading {
+    position: absolute;
+    top: 40px;
+    left: 120px;
+    color: white;
+}
+
+.container {
+    background-image: url("containerBackgroundImage.jpg");
+    position: absolute;
+    right: 30px;
+    width: 35%;
+    /* margin: auto; */
+    text-align: center;
+    background-color: #e19774;
+    flex-direction: column;
+    height: 300px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    color: white;
+}
+
+
+.container h1 {
+    margin-bottom: 45px;
+}
+
+.btn {
+    border-radius: 8px;
+    font-size: medium;
+    color: white;
+    /*background-color: #a428c3;*/
+    background-color: #4f3e93;
+    width: 100px;
+    height: 30px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.container input[type="password"], input[type="text"] {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    color: #302222;
+    font-size:large;
+    font-weight:600;
+    width:40%;
+}
+.container label {
+    color: white;
+    font-size: x-large;
+    font-weight: 600;
+    float: left;
+}
+.mr-40{
+    margin-right:40px;
+}

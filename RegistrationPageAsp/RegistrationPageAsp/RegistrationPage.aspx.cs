@@ -49,7 +49,16 @@ namespace RegistrationPageAsp
         public string UserPhoto { get; set; }
 
     }
-   
+
+    public class Temp2
+    {
+        public int NoteId { get; set; }
+        public string Note { get; set; }
+
+    }
+
+  
+
     public partial class WebForm1 : AuthorizationClass
     {
         static int Id=0;
@@ -64,10 +73,10 @@ namespace RegistrationPageAsp
             {
                 Id = 0;
             }
-            else if(Id!=0)
+           /* else if(Id!=0)
             {
                 usercontrol.objId = Id;
-            }
+            }*/
             bool isAdmin = checkIsAdmin();
             int sessionUserId = int.Parse(Session["UserId"].ToString());
             int queryId = int.Parse(Request.QueryString["UserId"].ToString());
@@ -79,7 +88,70 @@ namespace RegistrationPageAsp
 
         }
 
-            [System.Web.Services.WebMethod]
+
+
+
+        [WebMethod(EnableSession = true)]
+        [System.Web.Script.Services.ScriptMethod(UseHttpGet = true,
+       ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        public static Object GetAllUserNoteData()
+        {
+            List<Temp2> obj = new List<Temp2>();
+
+            using (var dbcontext = new RegistrationPageEntities4())
+            {
+                var notes = dbcontext.UserNotes.Where(i => i.UserId == Id).ToList();
+                foreach (var note in notes)
+                {
+                    Temp2 obj2 = new Temp2();
+                    obj2.NoteId = note.NoteId;
+                    obj2.Note = note.Note;
+                    obj.Add(obj2);
+                }
+            }
+           return obj;
+        }
+
+
+
+
+        [System.Web.Services.WebMethod]
+        public static void deleteNoteData(string Id)
+        {
+            int id = int.Parse(Id);
+            using (var dbcontext = new RegistrationPageEntities4())
+            {   
+              
+                var UserNotes = dbcontext.UserNotes.Where(i => i.NoteId == id).FirstOrDefault();
+
+                dbcontext.UserNotes.Remove(UserNotes);
+              
+                dbcontext.SaveChanges();
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [System.Web.Services.WebMethod]
         public static Object sendUserData(string UserId)
         {
                 Temp obj = new Temp();
@@ -324,6 +396,33 @@ namespace RegistrationPageAsp
             return AllState;
         }
 
-       
+
+
+        public void Insert(object sender, EventArgs e)
+        {
+            using (var dbcontext = new RegistrationPageEntities4())
+            {
+                UserNotes newobj = new UserNotes();
+                newobj.Note = txtNote.Text;
+                newobj.UserId = Id;
+
+                if (myUserControl.Status == "true")
+                {
+                    newobj.IsPrivate = 1;
+                }
+                else
+                {
+                    newobj.IsPrivate = 0;
+                }
+
+                dbcontext.UserNotes.Add(newobj);
+                dbcontext.SaveChanges();
+            }
+            txtNote.Text = "";
+
+            // BindGrid();
+        }
+
+
     }
 }
