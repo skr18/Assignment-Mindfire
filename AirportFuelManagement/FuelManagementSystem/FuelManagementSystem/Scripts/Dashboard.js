@@ -4,16 +4,17 @@
     //Logout
     $("#logout").click(function (e) {
         e.preventDefault();
+        var cookies = Request.Cookies.AllKeys;
+        foreach(cookie in cookies)
+        {
+            Response.Cookies[cookie].Expires = DateTime.Now.AddDays(-1);
+        }
         window.location.href = "loginpage";
-        cookieStore.getAll().then(cookies => cookies.forEach(cookie => {
-            console.log('Cookie deleted:', cookie);
-            cookieStore.delete(cookie.name);
-        }));
     })
 
     var loading = document.getElementById("loading")
     loading.style.display = "block";
-    setTimeout(hideLoader, 1 * 1000);
+    
     var req = await fetch(
         "https://www.universal-tutorial.com/api/getaccesstoken",
         {
@@ -31,15 +32,15 @@
     var spanClose = document.getElementsByClassName("close")[0];
     var modal = document.getElementById("myModal");
     
-    var DashboardAirportSelectTag = document.getElementById("AllAirportSelectTag");
-    var TransactionAirportSelectTag = document.getElementById("AirportTransactionSelectTag");
+    var dashboardAirportSelectTag = document.getElementById("allAirportSelectTag");
+    var transactionAirportSelectTag = document.getElementById("airportTransactionSelectTag");
 
     /*Fill All Airports And Aircraft*/
-    getAllAirport(DashboardAirportSelectTag);
+    getAllAirport(dashboardAirportSelectTag);
     let airportName = $("#airportName").html()
     getAllAircraft(airportName, null);
 
-    getAllAirport(TransactionAirportSelectTag);
+    getAllAirport(transactionAirportSelectTag);
     function getAllAirport(node) {
         $.ajax({
             type: "GET",
@@ -73,15 +74,15 @@
             }
         }
     }
-    $("#AllAirportSelectTag").change(function () {
-        let airportName = $("#AllAirportSelectTag").val();
+    $("#allAirportSelectTag").change(function () {
+        let airportName = $("#allAirportSelectTag").val();
         $("#airportName").html(airportName);
         let node = null;
         getAllAircraft(airportName,node);
     })
-    $("#AirportTransactionSelectTag").change(function () {
-        let airportName = $("#AirportTransactionSelectTag").val();
-        let node = $("#TransactionAircraftSelectTag");
+    $("#airportTransactionSelectTag").change(function () {
+        let airportName = $("#airportTransactionSelectTag").val();
+        let node = $("#transactionAircraftSelectTag");
         getAllAircraft(airportName,node);
     })
 
@@ -112,18 +113,18 @@
         function getAllAircraftTemplate(airline, aircraftName, source, destination) {
 
             let AircraftTemplate = `
-                  <div class="resp-table-row">
-                            <div class="table-body-cell">
+                  <div class="respTableRow">
+                            <div class="tableBodyCell">
                                  <img class="airlinrLogo" src="../Content/${airline}-Logo.jpg">
                                 
                             </div>
-                            <div class="table-body-cell">
+                            <div class="tableBodyCell">
                                 ${aircraftName}
                             </div>
-                            <div class="table-body-cell">
+                            <div class="tableBodyCell">
                                 ${source}
                             </div>
-                            <div class="table-body-cell">
+                            <div class="tableBodyCell">
                                 ${destination}
                             </div>               
                       </div>          
@@ -151,7 +152,7 @@
     function loadAircraftData(datas, node) {
         if (node != null) {
             if (datas.length == 0) {
-                $("<option/>", { value: "parent" }).text("No data to show").appendTo(node);
+                $("<option/>", { value: "no data" }).text("No airport data to show").appendTo(node);
             }
             else {
                 $(node).text("");
@@ -169,9 +170,10 @@
     /*Load States For Aircraft Source and destination*/
     
     var sourceSelectTag = document.getElementById("sourceSelectTag")
-    var DestinationSelectTag = document.getElementById("DestinationSelectTag")
+    var destinationSelectTag = document.getElementById("destinationSelectTag")
     getStates(sourceSelectTag,"Source")
-    getStates(DestinationSelectTag,"Destination")
+    getStates(destinationSelectTag, "Destination")
+    setTimeout(hideLoader, 1 * 1000);
     async function getStates(node,text) {
         const responce = await fetch(
             `https://www.universal-tutorial.com/api/states/India`,
@@ -214,9 +216,9 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             success: function (responce) {
-                console.log("data base initialized")
-                getAllAirport(DashboardAirportSelectTag);
-                getAllAirport(TransactionAirportSelectTag);
+                
+                getAllAirport(dashboardAirportSelectTag);
+                getAllAirport(transactionAirportSelectTag);
             },
             failure: function (response) {
                 alert("failure, to initialize data base");
@@ -269,8 +271,8 @@
                     $(".userModal").css("display", "block")
                     $(".userModal-body").text("Airport Added Sucessfully!, Thank For Choosing Skr Travel's")
 
-                    getAllAirport(DashboardAirportSelectTag);
-                    getAllAirport(TransactionAirportSelectTag);
+                    getAllAirport(dashboardAirportSelectTag);
+                    getAllAirport(transactionAirportSelectTag);
                     hideLoader();
                     //loadAircraftData(responce.d);
                 },
@@ -290,7 +292,7 @@
         if (checkforEmptyData($("#sourceSelectTag")) == 0) {
             flag = 0;
         }
-        if (checkforEmptyData($("#DestinationSelectTag")) == 0) {
+        if (checkforEmptyData($("#destinationSelectTag")) == 0) {
             flag = 0;
         }
 
@@ -298,7 +300,7 @@
 
             let aircraftName = $("#newAircraftTextBox").val();
             let aircraftSource = $("#sourceSelectTag").val();
-            let aircraftDestination = $("#DestinationSelectTag").val();
+            let aircraftDestination = $("#destinationSelectTag").val();
             let airlineName = $("#airlineSelectTag").val();
 
             let data = {};
@@ -317,15 +319,15 @@
                 success: function (responce) {
                     $("#newAircraftTextBox").val("");
                     $("#sourceSelectTag").val("")
-                    $("#DestinationSelectTag").val("");
+                    $("#destinationSelectTag").val("");
                     getStates(sourceSelectTag, "Source")
-                    getStates(DestinationSelectTag, "Destination")
+                    getStates(destinationSelectTag, "Destination")
                     let airportName = $("#airportName").html()
                     getAllAircraft(airportName, null);
-                    let node = $("#TransactionAircraftSelectTag");
+                    let node = $("#transactionAircraftSelectTag");
                     getAllAircraft(airportName, node);
                     $(".userModal").css("display", "block")
-                    $(".userModal-body").text("Aircraft Added Sucessfully!, Thank For Choosing Skr Travel's")
+                    $(".userModalBody").text("Aircraft Added Sucessfully!, Thank For Choosing Skr Travel's")
                     hideLoader();
                     //loadAircraftData(responce.d);
                 },
@@ -338,51 +340,47 @@
 
 
     /*Transaction Between Pages*/
+    const queryString = window.location.search;
+    const currentTab = queryString.split("?")[1]
+
+    let allNavbarElement = ["home", "report", "transaction"];
+    
+    function loadCurrentTab(currentTab) {
+        let loading = document.getElementById("loading")
+   
+        for (i = 0; i < allNavbarElement.length; i++) {
+            let childNode = $(`#${allNavbarElement[i]}`).attr("childelement");
+            if (allNavbarElement[i] == currentTab) {
+                $(`#${allNavbarElement[i]}`).addClass("active");
+         
+                $(`#${childNode}`).css("display", "block");
+            }
+            else {
+                $(`#${allNavbarElement[i]}`).removeClass();
+                $(`#${childNode}`).css("display", "none");
+            }
+        }
+        loading.style.display = "block";
+        setTimeout(hideLoader, 0.5 * 1000);
+    }
+    loadCurrentTab(currentTab);
+    
 
     $("#transaction").click(function (e) {
         e.preventDefault();
-        $("#container").css("display", "none");
-        $("#reportContainer").css("display", "none");
-
-        $("#transactionContainer").css("display", "block");
-        $("#home").removeClass();
-        $("#report").removeClass();
-        $("#transaction").addClass("active");
-
-        let loading = document.getElementById("loading")
-        loading.style.display = "block";
-        setTimeout(hideLoader, 0.5 * 1000);
+        document.location = "?transaction";
 
     })
 
     $("#report").click(function (e) {
         e.preventDefault();
-
-        $("#container").css("display", "none");
-        $("#transactionContainer").css("display", "none");
-        $("#reportContainer").css("display", "flex");
-
-        $("#home").removeClass();
-        $("#transaction").removeClass();
-        $("#report").addClass("active");
-
-        loading.style.display = "block";
-        setTimeout(hideLoader, 0.5 * 1000);
-
+        document.location = "?report";
     })
     $("#home").click(function (e) {
         e.preventDefault();
 
-        $("#container").css("display", "block");
-        $("#reportContainer").css("display", "none");
-        $("#transactionContainer").css("display", "none");
-        $("#transaction").removeClass();
-        $("#report").removeClass();
-        $("#home").addClass("active");
-
-        loading.style.display = "block";
-        setTimeout(hideLoader, 0.5 * 1000);
-
+        document.location = "?home";
+       
     })
 
 
@@ -392,30 +390,30 @@
         e.preventDefault();
        
         if ($("#transactionTypeSelectTag").val() == "In") {
-            $("#InTypeTransactionDiv").css("display", "flex");
-            $("#TransactionInOutAircraftDiv").css("display", "none");
+            $("#inTypeTransactionDiv").css("display", "flex");
+            $("#transactionInOutAircraftDiv").css("display", "none");
             $("#oilTransactionBtn").val("Fill Fuel Container")
         }
         else {
             let labletext = "Choose The Aircraft In which You Want Fill Oil";
-            $("#TransactionInOutAircrafLabel").text(labletext);
+            $("#transactionInOutAircrafLabel").text(labletext);
             $("#oilTransactionBtn").val("Fill In Aircraft")
-            $("#InTypeTransactionDiv").css("display","none")
-            $("#TransactionInOutAircraftDiv").css("display","flex")
+            $("#inTypeTransactionDiv").css("display","none")
+            $("#transactionInOutAircraftDiv").css("display","flex")
         }
     })
 
-    $("#OilFillTypeSelectTag").change(function (e) {
+    $("#oilFillTypeSelectTag").change(function (e) {
         e.preventDefault();
         
-        if ($("#OilFillTypeSelectTag").val() == "From Suplier") {
-            $("#TransactionInOutAircraftDiv").css("display", "none");
+        if ($("#oilFillTypeSelectTag").val() == "From Suplier") {
+            $("#transactionInOutAircraftDiv").css("display", "none");
         }
         else {
             let labletext = "Choose The Aircraft From which You Want To Extract Oil";
             
-            $("#TransactionInOutAircrafLabel").text(labletext);
-            $("#TransactionInOutAircraftDiv").css("display","flex")
+            $("#transactionInOutAircrafLabel").text(labletext);
+            $("#transactionInOutAircraftDiv").css("display","flex")
         }
     })
 
@@ -432,7 +430,7 @@
         if (node.is("select")) {
             if (node.val() == null) {
                 $(`#${node.attr("errorId")}`).css("display", "block");
-                //console.log($(`#${node.attr("errorId")}`));
+                
                 flag = 0;
             }
             else {
@@ -455,12 +453,12 @@
         e.preventDefault();
         flag = 1;
         var currentFuelCapacity;
-        if (checkforEmptyData($("#AirportTransactionSelectTag")) == 0) {
+        if (checkforEmptyData($("#airportTransactionSelectTag")) == 0) {
             flag = 0;
         }else{
             $.ajax({
                 type: "POST",
-                data: JSON.stringify({ airportName: $("#AirportTransactionSelectTag").val() }),
+                data: JSON.stringify({ airportName: $("#airportTransactionSelectTag").val() }),
                 url: "Dashboard.aspx/GetFuelCapacity",
                 contentType: "application/json; charset=utf-8",
                 async: false,
@@ -476,8 +474,8 @@
             })
         }
         if ($("#transactionTypeSelectTag").val() == "In") {
-            if ($("#OilFillTypeSelectTag").val() == "From An Aircraft") {
-                let res = checkforEmptyData($("#TransactionAircraftSelectTag"))
+            if ($("#oilFillTypeSelectTag").val() == "From An Aircraft") {
+                let res = checkforEmptyData($("#transactionAircraftSelectTag"))
                 if (res == 0) {
                     flag = 0;
                 }
@@ -485,7 +483,7 @@
         }
         if ($("#transactionTypeSelectTag").val() == "Out") {
             
-            let res = checkforEmptyData($("#TransactionAircraftSelectTag"))
+            let res = checkforEmptyData($("#transactionAircraftSelectTag"))
             if (res == 0) {
                 flag = 0;
             }
@@ -496,7 +494,7 @@
         }
         if ( res == 1) {
             let val = parseInt($("#oilQuantityInp").val());
-            if ($("#OilFillTypeSelectTag").val() == "From An Aircraft" || $("#transactionTypeSelectTag").val() == "Out") {
+            if ($("#oilFillTypeSelectTag").val() == "From An Aircraft" || $("#transactionTypeSelectTag").val() == "Out") {
                 if (val < 300 || val > 1400) {
                     $("#oilTransactionSpan").val("Enter Valid Quantity( Range 300 - 1400 liter)")
                     var node = $("#oilQuantityInp");
@@ -514,10 +512,10 @@
         }
 
         if (flag == 1) {
-            let airportname = $("#AirportTransactionSelectTag").val();
+            let airportname = $("#airportTransactionSelectTag").val();
             let aircraftname = "";
-            if ($("#OilFillTypeSelectTag").val() == "From An Aircraft" ||  $("#transactionTypeSelectTag").val() == "Out"){
-                aircraftname = $("#TransactionAircraftSelectTag").val();
+            if ($("#oilFillTypeSelectTag").val() == "From An Aircraft" ||  $("#transactionTypeSelectTag").val() == "Out"){
+                aircraftname = $("#transactionAircraftSelectTag").val();
             }
             let quantity = parseInt($("#oilQuantityInp").val());
             let transactionData = {};
@@ -538,17 +536,17 @@
                 dataType: "json",
                 success: function (responce) {
                     $("#oilQuantityInp").val("");
-                    console.log(responce.d)
+                   
                     if (responce.d == true) {
                         
                         $(".userModal").css("display", "block")
-                        $(".userModal-header").css("background-color", "#04aa6d");
-                        $(".userModal-body").text("Transaction Sucessful!, Thank For Choosing Skr Travel's")
+                        $(".userModalHeader").css("background-color", "#04aa6d");
+                        $(".userModalBody").text("Transaction Sucessful!, Thank For Choosing Skr Travel's")
                     } else {
                        
                         $(".userModal").css("display", "block")
-                        $(".userModal-header").css("background-color", "#F44336");
-                        $(".userModal-body").text("Insuficient Fuel To Make The Transaction")
+                        $(".userModalHeader").css("background-color", "#F44336");
+                        $(".userModalBody").text("Insuficient Fuel To Make The Transaction")
                     }
                     hideLoader();
                     
@@ -590,11 +588,11 @@
 
         function fillSummaryTemplateData(airportName,fuelAvailable) {
             let summaryTemplate = ` 
-                 <div class="resp-table-row">
-                    <div class="table-body-cell">
+                 <div class="respTableRow">
+                    <div class="tableBodyCell">
                         ${airportName}
                     </div>
-                    <div class="table-body-cell" >
+                    <div class="tableBodyCell" >
                             ${fuelAvailable}
                     </div>  
 
@@ -606,16 +604,17 @@
         }
 
         let headingTemplate = `
-            <div id = "resp-table" >
-                <div id="resp-table-header">
-                      <div class="table-header-cell">
+            <div id = "respTable" >
+                <div id="respTableHeader">
+                      <div class="tableHeaderCell">
                         Airport Name
                      </div>
-                    <div class="table-header-cell">
-                        Fuel Available
+                    <div class="tableHeaderCell">
+                        Fuel Available<br/>(in liters)
+
                     </div>      
                 </div>
-                <div id="resp-table-body">
+                <div id="respTableBody">
                                
                 </div>
             </div >
@@ -627,13 +626,12 @@
         for (data of datas) {
 
             let template = fillSummaryTemplateData(data.AirportName, data.FuelAvailability)
-            $(".content #resp-table-body").append(template);
+            $(".content #respTableBody").append(template);
         }
         let downloadBtnTemplate = `
             <div>
                 <img id="downloadBtnImg" src="https://amritfoundationofindia.in/wp-content/uploads/2018/08/download-logo.png" 
-                    alt="Download Btn" title="Download Airport Summary Report">
-                
+                    alt="Download Btn" title="Download Airport Summary Report">    
             </div>
         `;
        // $(".content").append(downloadBtnTemplate);
@@ -650,7 +648,7 @@
             async: false,
             dataType: "json",
             success: function (responce) {
-                console.log("Fuel Report Done", responce.d)
+                
                 loadFuelReportData(responce.d, startDate, endDate)
             },
             failure: function (response) {
@@ -665,17 +663,17 @@
         $(".content").html("");
         
         let datePickerTemplate = `
-             <div class="flex-column">
-                <div class="flex-row marginBottom-5" >
-                    <label class="width-10" >From</label>
-                    <input type="date" class="padding-5" id="reportStartingDate" value=${startDate}>
+             <div class="flexColumn">
+                <div class="flexRow marginBottomSmall" >
+                    <label class="widthSmall" >From</label>
+                    <input type="date" class="paddingSmall" id="reportStartingDate" value=${startDate}>
                     
                 </div>
-                <div class="flex-row marginBottom-5">
-                    <label class="width-10">To</label>
-                    <input type="date" id="reportEndingDate" value="${endDate}" class="marginRight-10 padding-5">
+                <div class="flexRow marginBottomSmall">
+                    <label class="widthSmall">To</label>
+                    <input type="date" id="reportEndingDate" value="${endDate}" class="marginRightSmall paddingSmall">
                     
-                    <button id="searchFuelReportBtn" class="marginRight-10 width-10">Find</button>
+                    <button id="searchFuelReportBtn" class="marginRightSmall widthSmall">Find</button>
 
                     
                 </div>
@@ -737,25 +735,27 @@
                     <div>Airport:&nbsp&nbsp</div>
                     <div>${airportName}</div>
                 </div>
-                 <div id = "resp-table" >
-                    <div id="resp-table-header">
-                        <div class="table-header-cell">
+                <div class="fuelReportDataContainer">
+                 <div id = "respTable" >
+                    <div id="respTableHeader">
+                        <div class="tableHeaderCell">
                                Date
                         </div>
-                        <div class="table-header-cell">
+                        <div class="tableHeaderCell">
                                 Type
                         </div>
-                        <div class="table-header-cell">
+                        <div class="tableHeaderCell">
                                 Fuel
                         </div>
-                        <div class="table-header-cell">
+                        <div class="tableHeaderCell">
                              Aircraft No
                         </div>     
                     </div>
-                    <div id="resp-table-body" class="airport${airportId}Data">
+                    <div id="respTableBody" class="airport${airportId}Data">
                                
                     </div>
                  </div >
+                 </div>
             `
             return headingTemplate;
 
@@ -777,17 +777,17 @@
         function getFuelReportTemplate(date, type, fuelQuantity, aircraftName)
         {
             let tableTemplate = `
-                      <div class="resp-table-row">
-                            <div class="table-body-cell">
+                      <div class="respTableRow">
+                            <div class="tableBodyCell">
                                 ${date}
                             </div>
-                            <div class="table-body-cell" >
+                            <div class="tableBodyCell" >
                                 ${type}
                             </div>
-                            <div class="table-body-cell">
+                            <div class="tableBodyCell">
                                 ${fuelQuantity}
                             </div>
-                            <div class="table-body-cell">
+                            <div class="tableBodyCell">
                                 ${aircraftName}
                             </div>               
                       </div>          

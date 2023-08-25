@@ -22,7 +22,7 @@ namespace FuelManagementSystem
             }
             if (Request.QueryString["InvalidUrl"] == "true")
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Login 1st')", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Your session has expired, login to continue')", true);
             }
 
         }
@@ -32,7 +32,7 @@ namespace FuelManagementSystem
             var password = passwordInp.Text;
             string logPath = WebConfigurationManager.AppSettings["myLogRecordPath"];
             bool isValidUser=false;
-
+            Session["UserId"] = isValidUser;
             try
             {
                 isValidUser = UserAuthBusiness.IsValidUser(name, password);
@@ -49,7 +49,7 @@ namespace FuelManagementSystem
                 try
                 {
                     Session["UserId"] = isValidUser;
-                    Response.Redirect("dashboard");
+                    Response.Redirect("dashboard?home");
                    
                 }
                 catch (Exception ex)

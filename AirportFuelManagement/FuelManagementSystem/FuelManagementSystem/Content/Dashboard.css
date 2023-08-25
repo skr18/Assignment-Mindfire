@@ -200,10 +200,10 @@ span {
     margin: auto;
     width: 99%;
 }
-#aircraftDiv .table-header-cell  {
+#aircraftDiv .tableHeaderCell  {
     text-align:center
 }
-#aircraftDiv .table-body-cell {
+#aircraftDiv .tableBodyCell {
     text-align: center;
     vertical-align: middle;
 }
@@ -288,11 +288,12 @@ span {
         width: 100%;
     }
 
-    .reportHeadingTitle {
-        margin-top: 10px;
-        color: white;
-        margin-bottom: 10px;
-    }
+.reportHeadingTitle {
+    margin-top: 10px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
     .reportContainer {
         width: 100%;
@@ -304,9 +305,6 @@ span {
         display: flex;
         justify-content: space-evenly;
         background-color: #d3d3d3;
-    }
-
-    .reportTitle {
     }
 
     .activeReport {
@@ -380,35 +378,34 @@ span {
 
     /*Common class */
 
-    .marginTop-30 {
+    .marginTopLarge {
         margin-top: 30px;
     }
 
-
-    .marginTop-15 {
+    .marginTopMedium {
         margin-top: 15px;
     }
-    .marginTop-10 {
+    .marginTopSmall{
         margin-top: 10px;
     }
 
-    .marginBottom-5 {
+    .marginBottomSmall {
         margin-bottom: 5px;
     }
-    .marginBottom-20 {
+    .marginBottomMedium {
         margin-bottom: 20px;
     }
 
-    .marginRight-10 {
+    .marginRightSmall {
         margin-right: 10px;
     }
 
 
-    .width-10 {
+    .widthSmall {
         width: 10%;
     }
 
-    .width-86 {
+    .widthLarge {
         width: 86%;
     }
 
@@ -426,24 +423,24 @@ span {
 }
  
 
-    .AddBtn {
+    .addBtn {
         height: 22%;
     }
 
-    .padding-10 {
+    .paddingMedium {
         padding: 10px;
     }
 
-    .padding-5 {
+    .paddingSmall {
         padding: 5px;
     }
 
-    .flex-column {
+    .flexColumn {
         display: flex;
         flex-direction: column;
     }
 
-    .flex-row {
+    .flexRow {
         display: flex;
         flex-direction: row;
     }
@@ -454,7 +451,7 @@ span {
 
 
     /*Table*/
-#resp-table {
+#respTable {
     border-radius: 10px;
     width: 100%;
     margin-top: 10px;
@@ -462,26 +459,25 @@ span {
     background-color: #e7e7e7;
 }
 
-    #resp-table-header {
+    #respTableHeader {
         display: table-header-group;
         background-color: #8b8b8b;
         font-weight: bold;
         font-size: 20px;
     }
 
-    .table-header-cell {
+    .tableHeaderCell {
         display: table-cell;
-        text-align: justify;
-        /*text-align: center;*/
+
         padding-left: 2%;
         border-bottom: 1px solid black;
     }
 
-    #resp-table-body {
+    #respTableBody {
         display: table-row-group;
     }
 
-    .table-body-cell {
+    .tableBodyCell {
         display: table-cell;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -489,17 +485,19 @@ span {
         /*text-align: center;*/
     }
 
-    .resp-table-row {
+    .respTableRow {
         display: table-row;
     }
-
-
-
-    /*Transaction*/
-
-    #TransactionInOutAircraftDiv {
-        display: none;
+    .respTableRow:nth-child(even) {
+        background-color: #cbcbcb;
     }
+
+
+
+/*Transaction*/
+#transactionInOutAircraftDiv {
+    display: none;
+}
 
     .transactionTitle {
         color: white;
@@ -542,7 +540,7 @@ span {
         align-items: center;
     }
 
-    #TransactionAircraftSelectTag {
+    #transactionAircraftSelectTag {
         width: 106%;
         padding: 3px;
     }
@@ -561,7 +559,7 @@ span {
         margin-left: 0%;
     }
 
-.TransactionAircraftDiv{
+.transactionAircraftDiv{
     display:flex;
     flex-direction:row;
 }
@@ -580,7 +578,7 @@ span {
     background-color: rgba(0,0,0,0.4);
 }
 
-    .userModal-content {
+    .userModalContent {
         position: relative;
         background-color: #fefefe;
         margin: auto;
@@ -594,7 +592,7 @@ span {
         animation-duration: 0.4s
     }
 
-    .userModal-header {
+    .userModalHeader {
         padding: 2px 16px;
         color: white;
         display: flex;
@@ -608,7 +606,7 @@ span {
         width: 25px;
     }
 
-    .userModal-body {
+    .userModalBody {
         padding: 23px 16px;
     }
 
@@ -627,7 +625,7 @@ span {
         background-color: rgba(0,0,0,0.4);
     }
 
-    .modal-content {
+    .modalContent {
         position: relative;
         background-color: #fefefe;
         margin: auto;
@@ -668,17 +666,17 @@ span {
             cursor: pointer;
         }
 
-    .modal-header {
+    .modalHeader {
         padding: 2px 16px;
         background-color: #c5c5c5;
         color: black;
     }
 
-    .modal-body {
+    .modalBody {
         padding: 16px 16px;
     }
 
-    .modal-footer {
+    .modalFooter {
         padding: 2px 16px;
         /*  background-color: #5cb85c;
     color: white;*/
@@ -686,13 +684,13 @@ span {
     }
 
 
-.modal-footer input {
+.modalFooter input {
     width: 10%;
     height: 22px;
     margin-right: 10px;
 }
 
-.modal-footer input:hover {
+.modalFooter input:hover {
     background-color: gainsboro;
     cursor: pointer;
 }
@@ -766,7 +764,7 @@ span {
         border-radius: 18px;
     }
 
-    #AllAirportSelectTag {
+    #allAirportSelectTag {
         width: 75%;
         font-size: x-small;
     }
@@ -776,11 +774,11 @@ span {
         width: 85%;
     }
 
-    #resp-table-header {
+    #respTableHeader {
         font-size: 13px;
     }
 
-    .table-body-cell {
+    .tableBodyCell {
         font-size: small;
     }
 
@@ -820,8 +818,8 @@ span {
         margin-top: 3%;
     }
 
-    #AirportTransactionSelectTag {
-        font-size: small;
+    #airportTransactionSelectTag {
+        font-size: smaller;
     }
     /*Reports*/
     #reportContainer {
@@ -840,5 +838,13 @@ span {
 
     .reportHeading li a {
         font-size:11px;
+    }
+
+    input[type="date"]{
+        margin-left:5%;
+    }
+
+    .fuelReportDataContainer{
+        width:117%;
     }
 }

@@ -28,9 +28,19 @@ namespace FuelManagementSystem
         [System.Web.Services.WebMethod]
         public static void InitializeData()
         {
-            ApplicationDataInitializeBusiness.InitializeData();
-           /* ClientScript.RegisterStartupScript(this.GetType(), "alert", 
-                "alert('All your newly added airport's aircraft's and all your transaction will be deleted')", true);*/
+           
+            try
+            {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                ApplicationDataInitializeBusiness.InitializeData();
+            }
+            catch (Exception ex)
+            {
+                LogRecords.LogRecord(ex, logPath);
+            }
         }
 
         [WebMethod(EnableSession = true)]
@@ -41,7 +51,11 @@ namespace FuelManagementSystem
             List<string> AllAirports = new List<string>();
             try
             {
-               AllAirports= AirportsDataBusiness.GetAllAirports();
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                AllAirports = AirportsDataBusiness.GetAllAirports();
             }
             catch (Exception ex)
             {
@@ -62,6 +76,10 @@ namespace FuelManagementSystem
             List<CoustomModels.AircraftModel> AllAircraft = new List<CoustomModels.AircraftModel>();
             try
             {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
                 AllAircraft = AirportsDataBusiness.GetAllAircraft(name);
             }
             catch (Exception ex)
@@ -75,20 +93,57 @@ namespace FuelManagementSystem
         [System.Web.Services.WebMethod]
         public static void InsertNewAirport(CoustomModels.AirportModel airportData)
         {
-            AirportsDataBusiness.InsertNewAirport(airportData);
+            try
+            {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                AirportsDataBusiness.InsertNewAirport(airportData);
+            }
+            catch (Exception ex)
+            {
+                LogRecords.LogRecord(ex, logPath);
+            }
         }
        
         [System.Web.Services.WebMethod]
         public static void InsertNewAircraft(CoustomModels.AircraftModel aircraftData)
         {
-            AirportsDataBusiness.InsertNewAircraft(aircraftData);
+            try
+            {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                AirportsDataBusiness.InsertNewAircraft(aircraftData);
+
+            }
+            catch(Exception ex)
+            {
+                LogRecords.LogRecord(ex, logPath);
+
+            }
+
         }
 
 
         [System.Web.Services.WebMethod]
         public static bool Transaction(CoustomModels.TransactionModel transactionDatas)
         {
-            return TransactionBusiness.Transaction(transactionDatas);
+            try
+            {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                return TransactionBusiness.Transaction(transactionDatas);
+
+            }catch (Exception ex)
+            {
+                LogRecords.LogRecord(ex, logPath);
+            }
+            return false;
         }
 
         [System.Web.Services.WebMethod]
@@ -97,6 +152,10 @@ namespace FuelManagementSystem
             int quantity=0;
             try
             {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
                 quantity = TransactionBusiness.GetFuelCapacity(airportName);
             }catch(Exception ex)
             {
@@ -114,7 +173,11 @@ namespace FuelManagementSystem
             List< AirportSummaryModel > summaryReport = new List< AirportSummaryModel >();
             try
             {
-               summaryReport = ReportBusiness.GetSummaryReport();
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
+                summaryReport = ReportBusiness.GetSummaryReport();
             }
             catch (Exception ex)
             {
@@ -127,10 +190,15 @@ namespace FuelManagementSystem
         [System.Web.Services.WebMethod]
         public static List<AirportFuelReportModel> GetFuelReport(string startDate,string endDate)
         {
+            
             List<AirportFuelReportModel> fuelReport = new List<AirportFuelReportModel>();
 
             try
             {
+                if (HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"].ToString() == "false")
+                {
+                    throw new Exception("Someone Trying to acess data without loging");
+                }
                 fuelReport = ReportBusiness.GetFuelReport(startDate,endDate);
             }
             catch (Exception ex)

@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="./Content/LoginPage.css"><link  />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -18,7 +19,7 @@
        <div class="container">
             <h1>Skr Travel's</h1>
             <div>
-                <label class="mr-40">Name:</label>
+                <label class="marginRightMedium">Name:</label>
                 <asp:TextBox runat="server" ID="nameInp" ></asp:TextBox><br /><br /><br />
             </div>
             <div>

@@ -7,19 +7,19 @@
 <head runat="server">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="./Content/Dashboard.css"/>
+    <link rel="stylesheet" href="./Content/Dashboard.css" asp-append-version="true"/>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="airportPage" runat="server">
         <div>
              <ul id="navbar">
-              <li><a class="active" id="home">Home</a></li>
-              <li><a id="transaction">Transaction</a></li>
-              <li><a id="report">Report</a></li>
+              <li><a class="active" id="home" childelement="container">Home</a></li>
+              <li><a id="transaction" childelement="transactionContainer">Transaction</a></li>
+              <li><a id="report" childelement="reportContainer">Report</a></li>
               <li id="initialize"><a id="initializeBtn">Initialize</a></li>  
               <li><a id="logout">Logout</a></li>  
               
@@ -36,7 +36,7 @@
                 <div class="airportContainer">
                     <div class="airportNameDiv">
                         <label id="airportName">Indira Gandhi International Airport, Delhi</label>
-                        <select id="AllAirportSelectTag">
+                        <select id="allAirportSelectTag">
                             <option selected="selected" disabled="disabled" hidden="hidden">Choose Airport</option>
                         </select>
                     </div>
@@ -45,22 +45,22 @@
 
                 <div class="aircraftContainer">
                     <div id="aircraftDiv">
-                         <div id = "resp-table" >
-                            <div id="resp-table-header">
-                                <div class="table-header-cell">
+                         <div id = "respTable" >
+                            <div id="respTableHeader">
+                                <div class="tableHeaderCell">
                                        Airline
                                 </div>
-                                <div class="table-header-cell">
+                                <div class="tableHeaderCell">
                                         Aircraft Name
                                 </div>
-                                <div class="table-header-cell">
+                                <div class="tableHeaderCell">
                                         Source
                                 </div>
-                                <div class="table-header-cell">
+                                <div class="tableHeaderCell">
                                      Destination
                                 </div>     
                             </div>
-                            <div id="resp-table-body" class="allAircraft">
+                            <div id="respTableBody" class="allAircraft">
                                
                             </div>
                        </div >
@@ -69,28 +69,28 @@
                 </div>
                 <div class="newItemsAddDiv">
                      <div class="newItemsAddContainer addAirportDiv">
-                        <h3 class="marginTop-10"><u>Add New Airport</u></h3>
-                        <div class="marginTop-30 width-86">
-                            <div class="flex-row marginBottom-20">
+                        <h2 class="marginTopSmall"><u>Add New Airport</u></h2>
+                        <div class="marginTopLarge widthLarge">
+                            <div class="flexRow marginBottomMedium">
 
                                 <label>Airport Name:</label>
-                                <div class="flex-column">
-                                    <asp:TextBox runat="server" ID="airportNameInp" errorId="airportNameSpan" ClientIDMode="Static" 
+                                <div class="flexColumn">
+                                    <asp:TextBox runat="server" ID="airportNameInp" errorid="airportNameSpan" ClientIDMode="Static" 
                                         placeholder="Indira Gandhi Airport, Delhi" ></asp:TextBox>
                                      <span id="airportNameSpan">Airport Name is requried</span>
                                 </div>
                             </div>
 
-                            <div class="flex-row marginBottom-20">
+                            <div class="flexRow marginBottomMedium">
                                  <label>Fuel Capacity:</label>
-                                <div class="flex-column">
+                                <div class="flexColumn">
                                      <asp:TextBox runat="server" TextMode="Number" ID="fuelCapacityInp" 
-                                         ClientIDMode="Static" placeholder="35400 litters" errorId="AirportFuelSpan"></asp:TextBox>
-                                     <span id="AirportFuelSpan">Airport Fuel Capacity is requried</span>
+                                         ClientIDMode="Static" placeholder="35400 litters" errorid="airportFuelSpan"></asp:TextBox>
+                                     <span id="airportFuelSpan">Airport Fuel Capacity is requried</span>
                                 </div>
 
                             </div>
-                            <div class="AddBtn marginBottom-20">
+                            <div class="addBtn marginBottomMedium">
 
                                 <asp:Button runat="server" ID="addAirportBtn" ClientIDMode="Static" Text="Add"/>
                             </div>
@@ -98,19 +98,19 @@
                         </div>
                      </div>
                     <div class="newItemsAddContainer addAircraftDiv">
-                         <h3 class="marginTop-10" > <u>Add New Aircraft</u></h3>
+                         <h2 class="marginTopSmall" > <u>Add New Aircraft</u></h2>
 
-                        <div class="width-86">
-                            <div class="flex-row marginBottom-20 marginTop-15">
+                        <div class="widthLarge">
+                            <div class="flexRow marginBottomMedium marginTopMedium">
                                 <label>Aircraft Name:</label>
-                                <div class="flex-column">
+                                <div class="flexColumn">
                                      <asp:TextBox runat="server" ID="newAircraftTextBox" ClientIDMode="Static" 
-                                        placeholder="DH647" errorId="aircraftNameSpan" ></asp:TextBox>
+                                        placeholder="DH647" errorid="aircraftNameSpan" ></asp:TextBox>
                                      <span id="aircraftNameSpan">Aircraft Name is requried</span>
                                 </div>
                             </div>
                             
-                            <div class="flex-row marginBottom-20">
+                            <div class="flexRow marginBottomMedium">
                                 <label >Airline Name:</label>
                                
 
@@ -124,29 +124,29 @@
                                 
                             </div>
 
-                            <div class="flex-row marginBottom-20">
+                            <div class="flexRow marginBottomMedium">
                                  <label >Aircrft Source:</label>
-                                <div class="flex-column">
+                                <div class="flexColumn">
 
-                                    <select id="sourceSelectTag" errorId="sourceSpan">
+                                    <select id="sourceSelectTag" errorid="sourceSpan">
                                         <option selected="selected" disabled="disabled" hidden="hidden" value="Source State">Source State</option>
                                     </select>
                                      <span id="sourceSpan">Choose Source</span>
                                 </div>
                             </div>
 
-                            <div class="flex-row marginBottom-20">
+                            <div class="flexRow marginBottomMedium">
          
                                  <label >Destination:</label>
-                                <div class="flex-column">
+                                <div class="flexColumn">
 
-                                     <select id="DestinationSelectTag" errorId="destinationSpan">
+                                     <select id="destinationSelectTag" errorid="destinationSpan">
                                         <option selected="selected" disabled="disabled" hidden="hidden">Choose Destination</option>
                                     </select>
                                      <span id="destinationSpan">Choose Destination State</span>
                                 </div>
                             </div>
-                            <div class="AddBtn marginBottom-20">
+                            <div class="addBtn marginBottomMedium">
                                 <asp:Button runat="server" ID="addAircraftBtn" ClientIDMode="Static" Text="Add"/>
                             </div>
 
@@ -166,7 +166,7 @@
 
                     <div class="trasactionControls">
                          <label id="airportNameLable">Airport</label>
-                         <select id="AirportTransactionSelectTag" errorId="transactionAirportSpan">
+                         <select id="airportTransactionSelectTag" errorid="transactionAirportSpan">
                             <option selected="selected" disabled="disabled" hidden="hidden">Choose Airport</option>
                         </select>
 
@@ -182,17 +182,17 @@
                          </select>
                     </div>
                 </div>
-                <div class="trasactionControls" id="InTypeTransactionDiv">
+                <div class="trasactionControls" id="inTypeTransactionDiv">
                     <label>Choose A Way To Fill The Container</label>
-                     <select id="OilFillTypeSelectTag">
+                     <select id="oilFillTypeSelectTag">
                         <option selected="selected">From Suplier</option>
                         <option >From An Aircraft</option>
                      </select>
                 </div>
-                <div class="trasactionControls" id="TransactionInOutAircraftDiv">
-                    <label id="TransactionInOutAircrafLabel"></label>
-                    <div class="TransactionAircraftDiv">
-                         <select id="TransactionAircraftSelectTag" errorId="transactionAircraftSpan">
+                <div class="trasactionControls" id="transactionInOutAircraftDiv">
+                    <label id="transactionInOutAircrafLabel"></label>
+                    <div class="transactionAircraftDiv">
+                         <select id="transactionAircraftSelectTag" errorid="transactionAircraftSpan">
                             <option selected="selected" disabled="disabled" hidden="hidden">Choose Aircraft</option>
                         </select>
                         <span id="transactionAircraftSpan">Choose Aircraft</span>
@@ -200,7 +200,7 @@
                 </div>
                 <div class="trasactionControls">
                     <label>Enter The Amount</label>
-                    <asp:TextBox ID="oilQuantityInp" errorId="oilTransactionSpan" runat="server" placeholder="Eg: 34243 liter"/>
+                    <asp:TextBox ID="oilQuantityInp" errorid="oilTransactionSpan" runat="server" placeholder="Eg: 34243 liter"/>
                      <span id="oilTransactionSpan">Enter Valid Quantity( Range 300 - 1400 liter)</span>
                 </div>
                 <div class="trasactionControls">
@@ -240,14 +240,14 @@
 
         <div class="userModal">
 =
-              <div class="userModal-content">
+              <div class="userModalContent">
       
-                <div class="userModal-header">
-                  <h4 class="userModal-title">Popup Message</h4>
+                <div class="userModalHeader">
+                  <h4 class="userModalTitle">Popup Message</h4>
                   <button type="button" class="userModalClose">&times;</button>
                 </div>
 
-                <div class="userModal-body">
+                <div class="userModalBody">
                  
                 </div>
               </div>
@@ -257,16 +257,16 @@
        <!-- Intitialize Model -->
         <div>
             <div id="myModal" class="modal">
-              <div class="modal-content">
-                <div class="modal-header">
+              <div class="modalContent">
+                <div class="modalHeader">
                   <span class="close">&times;</span>
                   <h2>Confermation Dialog</h2>
                 </div>
-                <div class="modal-body">
+                <div class="modalBody">
                   <p>All of your newly added airports, aircraft's and all your transaction will be deleted. Are you Sure</p>
                  
                 </div>
-                <div class="modal-footer">
+                <div class="modalFooter">
                     <asp:Button ID="modalConfirmBtn" runat="server" ClientIDMode="Static" Text="Yes" />
                     <asp:Button ID="modalCancelBtn" runat="server" ClientIDMode="Static" Text="No" />
                 </div>
